@@ -11,7 +11,7 @@
         }
     ],
     "require": {
-        "jenner/tools": "dev-master",
+        "jenner/tools": "1.2.0",
         "php": ">=5.3.0"
     },
 
