@@ -7,7 +7,7 @@
  * 用于在微信跳转过程中，获取相关信息
  */
 
-namespace Jenner\Zebra\Wechat;
+namespace Jenner\Zebra\Wechat\Client;
 
 
 use Jenner\Zebra\Tools\Http;
