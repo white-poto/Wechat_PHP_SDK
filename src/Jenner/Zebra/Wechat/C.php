@@ -17,6 +17,8 @@ class C {
 
     protected static $config;
 
+    protected static $config_path;
+
     public static function setConfigPath($callback){
         self::$config_path = call_user_func($callback);
     }
@@ -68,7 +70,9 @@ class C {
      * @throws \Exception
      */
     private static function initConfig($key){
-        if(!defined('WECHAT_CONFIG_PATH')) define('WECHAT_CONFIG_PATH', dirname(__FILE__) . DIRECTORY_SEPARATOR . 'Config');
+        if(!isset(self::$config_path) || empty(self::$config_path)){
+            self::$config_path = dirname(__FILE__) . DIRECTORY_SEPARATOR . 'Config';
+        }
 
         if(!\strstr($key, '.')) throw new \Exception('param key does not contain "."');
         $keyInfo = explode('.', $key);
