@@ -70,9 +70,11 @@ class C {
      * @throws \Exception
      */
     private static function initConfig($key){
-        if(!isset(self::$config_path) || empty(self::$config_path)){
-            self::$config_path = dirname(__FILE__) . DIRECTORY_SEPARATOR . 'Config';
+        if(!defined('WECHAT_CONFIG_PATH')) {
+            define('WECHAT_CONFIG_PATH', dirname(__FILE__) . DIRECTORY_SEPARATOR . 'Config');
+            self::$config_path = WECHAT_CONFIG_PATH;
         }
+
 
         if(!\strstr($key, '.')) throw new \Exception('param key does not contain "."');
         $keyInfo = explode('.', $key);

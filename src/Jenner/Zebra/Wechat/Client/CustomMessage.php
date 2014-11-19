@@ -129,10 +129,13 @@ class CustomMessage extends WechatClient {
         }else{
             $params['touser'] = $this->touser;
         }
-        if(empty($params['touser'])) return false;
+        if(empty($params['touser'])) {
+            $this->error_code = '-10000';
+            $this->error_message = 'touser can not be empty';
+            return false;
+        }
         $params['msgtype'] = $message_type;
         $params[$message_type] = $message;
-
         $result = $this->request($this->uri, $params);
         return $result;
     }

@@ -31,9 +31,13 @@ class BaseClient
         return $this->error_message;
     }
 
+    public function getCode(){
+        return $this->error_code;
+    }
+
     public function checkResponse($response_json){
         $response = json_decode($response_json, true);
-        if(!isset($response['errcode'])){
+        if(isset($response['errcode'])){
             $this->error_code = $response['errcode'];
             $this->error_message = $response['errmsg'];
             return false;
