@@ -72,7 +72,7 @@ class WechatClient extends BaseClient {
         $get_params['access_token'] = $access_token;
         $query_string = http_build_query($get_params);
         $http = new \Jenner\Zebra\Tools\Http($uri . '?' . $query_string);
-        $post_params = json_encode($post_params);
+        $post_params = json_encode($post_params, JSON_UNESCAPED_UNICODE);
         $result_json = $http->POST($post_params);
 
         //存在errcode并且errcode不为0时，为错误返回
@@ -87,8 +87,8 @@ class WechatClient extends BaseClient {
      * @return mixed
      */
     public function getAccessToken(){
-        if($this->checkAccessTokenExpiresIn()) {
-            return $_ENV['wechat']['access_token'];
+        if($cache = $this->checkAccessTokenExpiresIn()) {
+            return $cache['access_token'];
         }
 
         $uri = $this->uri_prefix . C::get('uri.auth.token');
@@ -106,9 +106,10 @@ class WechatClient extends BaseClient {
             return false;
         }
 
-        $_ENV['wechat']['access_token'] = $result['access_token'];
-        $_ENV['wechat']['expires_in'] = $result['expires_in'];
-        $_ENV['wechat']['create_time'] = time();
+        $cache['access_token'] = $result['access_token'];
+        $cache['expires_in'] = $result['expires_in'];
+        $cache['create_time'] = time();
+        \Cache::forever('wechat', $cache);
 
         return $result['access_token'];
     }
@@ -118,12 +119,13 @@ class WechatClient extends BaseClient {
      * @return bool
      */
     public function checkAccessTokenExpiresIn(){
-        if(!isset($_ENV['wechat'])) return false;
+        $cache = \Cache::get('wechat');
+        if(empty($cache)) return false;
         $now = time();
-        if($now - $_ENV['wechat']['create_time'] > $_ENV['wechat']['expires_in']){
+        if($now - $cache['create_time'] > $cache['expires_in']){
             return false;
         }
 
-        return true;
+        return $cache;
     }
 } 
