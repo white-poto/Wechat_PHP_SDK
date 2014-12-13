@@ -13,6 +13,17 @@ use Jenner\Zebra\Wechat\Exception\PostDataEmptyException;
 use Jenner\Zebra\Wechat\Request\XmlRequest;
 use Jenner\Zebra\Wechat\Response\XmlResponse;
 
+
+/**
+ * 微信推送接收器
+ * 你需要继承该抽象类，并实现其抽象方法
+ *
+ * 该类提供一个before和after，如果你需要在处理微信推送之前或之后做一些处理，可以在你的类中实现这两个方法
+ * 如果没有实现before和after，则不会调用
+ *
+ * Class WechatServer
+ * @package Jenner\Zebra\Wechat
+ */
 abstract class WechatServer
 {
     /**
@@ -32,6 +43,9 @@ abstract class WechatServer
     public function __construct($token)
     {
         $this->token = $token;
+        if(method_exists($this, 'before') && is_callable([$this, 'before'])){
+            $this->before();
+        }
     }
 
     /**
@@ -103,6 +117,24 @@ abstract class WechatServer
                     case 'VIEW' :
                         $this->onEventView();
                         break;
+                    case 'scancode_push' :
+                        $this->onScanCodePush();
+                        break;
+                    case 'scancode_waitmsg' :
+                        $this->onScanCodeWaitMsg();
+                        break;
+                    case 'pic_sysphoto' :
+                        $this->onPicSysPhoto();
+                        break;
+                    case 'pic_photo_or_album' :
+                        $this->onPicPhotoOrAlbum();
+                        break;
+                    case 'pic_weixin' :
+                        $this->onPicWeixin();
+                        break;
+                    case 'location_select' :
+                        $this->onLocationSelect();
+                        break;
                     default :
                         $this->onUnknownEvent();
                         break;
@@ -113,6 +145,11 @@ abstract class WechatServer
                 $this->onUnknownMessage();
                 break;
         }
+
+        if(method_exists($this, 'after') && is_callable([$this, 'after'])){
+            $this->after();
+        }
+
     }
 
     /**
@@ -198,6 +235,42 @@ abstract class WechatServer
      * @return mixed
      */
     abstract public function onEventView();
+
+    /**
+     * 扫码推事件的事件推送
+     * @return mixed
+     */
+    abstract public function onScanCodePush();
+
+    /**
+     * 扫码推事件且弹出“消息接收中”提示框的事件推送
+     * @return mixed
+     */
+    abstract public function onScanCodeWaitMsg();
+
+    /**
+     * 弹出系统拍照发图的事件推送
+     * @return mixed
+     */
+    abstract public function onPicSysPhoto();
+
+    /**
+     * 弹出拍照或者相册发图的事件推送
+     * @return mixed
+     */
+    abstract public function onPicPhotoOrAlbum();
+
+    /**
+     * 弹出微信相册发图器的事件推送
+     * @return mixed
+     */
+    abstract public function onPicWeixin();
+
+    /**
+     * 弹出地理位置选择器的事件推送
+     * @return mixed
+     */
+    abstract public function onLocationSelect();
 
     /**
      * @return mixed

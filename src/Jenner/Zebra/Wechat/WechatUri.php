@@ -29,13 +29,29 @@ class WechatUri
     /**
      * 用户管理相关
      */
-    const USER_GROUP_CREATE = '/groups/create'; //创建用户组地址
     const USER_UPDATE_REMARK = '/user/info/updateremark'; //修改关注者备注地址
-    const USER_INFO = 'info'; //查看关注者信息地址
+    const USER_INFO = '/user/info'; //查看关注者信息地址
     const USER_GET = '/user/get'; //获取关注者列表地址
+
+    /**
+     * 用户组相关
+     */
+    const USER_GROUP_CREATE = '/groups/create'; //创建用户组地址
+    const USER_GROUP_GET = '/groups/get'; //获取分组列表
+    const USER_GROUP_GET_BY_OPEN_ID = '/groups/getid'; //根据OPEN_ID获取用户所属分组
+    const USER_GROUP_UPDATE = '/groups/update'; //修改分组名称
+    const USER_GROUP_MEMBER_UPDATE = '/groups/members/update'; //移动用户分组
+
 
     //页面重定向相关
     const REDIRECT_TOKEN = 'https://api.weixin.qq.com/sns/oauth2/access_token';
     const REDIRECT_USER_INFO = 'https://api.weixin.qq.com/sns/userinfo';
     const REDIRECT_AUTH = 'https://open.weixin.qq.com/connect/oauth2/authorize';
-} 
+
+    /**
+     * 菜单相关
+     */
+    const MENU_CREATE = '/menu/create';
+    const MENU_GET = '/menu/get';
+    const MENU_DELETE = '/menu/delete';
+}
