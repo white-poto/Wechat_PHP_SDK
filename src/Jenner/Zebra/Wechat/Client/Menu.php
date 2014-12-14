@@ -6,7 +6,7 @@
  * Time: 下午1:34
  */
 
-namespace Jenner\Zebra\Wechat\Client\Menu;
+namespace Jenner\Zebra\Wechat\Client;
 
 
 use Jenner\Zebra\Wechat\WechatUri;

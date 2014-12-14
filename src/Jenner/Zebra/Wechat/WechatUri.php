@@ -65,4 +65,21 @@ class WechatUri
     const MENU_CREATE = '/menu/create';
     const MENU_GET = '/menu/get';
     const MENU_DELETE = '/menu/delete';
+
+
+    /**
+     * 语意理解接口
+     */
+    const SEMANTIC = '/semantic/semproxy/search';
+
+    /**
+     * 二维码相关
+     */
+    const QR_CODE_CREATE = '/qrcode/create'; //创建二维码
+    const QR_CODE_DOWNLOAD = '/showqrcode'; //下载二维码
+
+    /**
+     * 长连接转短连接
+     */
+    const SHORT_URL = '/shorturl'; //长连接转短连接
 }
