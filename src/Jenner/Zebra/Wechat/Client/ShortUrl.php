@@ -10,7 +10,7 @@ namespace Jenner\Zebra\Wechat\Client;
 
 use Jenner\Zebra\Wechat\WechatUri;
 
-class ShotUrl extends WechatClient
+class ShortUrl extends WechatClient
 {
     /**
      * 长连接转短连接
