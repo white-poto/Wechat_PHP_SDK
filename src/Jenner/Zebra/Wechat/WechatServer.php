@@ -16,11 +16,14 @@ use Jenner\Zebra\Wechat\Response\XmlResponse;
 /**
  * 微信推送接收器
  * 你需要继承该抽象类，并实现其抽象方法
+ * 对于不同的微信推送，你需要调用listen和unListen函数进行绑定和解绑定
  *
  * 该类提供一个before和after，如果你需要在处理微信推送之前或之后做一些处理，可以在你的类中实现这两个方法
  * 如果没有实现before和after，则不会调用
+ * before接收一个数组参数，该数组为微信推送请求信息
+ * after接收两个参数，request和result，request为微信推送请求信息，result为你注册的处理函数的返回值
  *
- * 微信消息推送列表：
+ * 微信消息推送列表(不区分大小写)：
  * text
  * image
  * voice
@@ -77,6 +80,7 @@ abstract class WechatServer
      * @param $callback
      */
     public function listen($event, $callback){
+        $event = strtolower($event);
         $this->callback[$event] = $callback;
     }
 
@@ -85,6 +89,7 @@ abstract class WechatServer
      * @param $event
      */
     public function unListen($event){
+        $event = strtolower($event);
         unset($this->callback[$event]);
     }
 
@@ -119,6 +124,7 @@ abstract class WechatServer
 
         if($this->getMsgType() == 'event'){
             $event_type = $this->getEvent();
+            $event_type = strtolower($event_type);
             if(!empty($this->callback[$event_type]) && is_callable($this->callback[$event_type])){
                 $result = call_user_func($this->callback[$event_type], $this->request);
             }else{
@@ -126,6 +132,7 @@ abstract class WechatServer
             }
         }else{
             $message_type = $this->getMsgType();
+            $message_type = strtolower($message_type);
             if(!empty($this->callback[$message_type]) && is_callable($this->callback[$message_type])){
                 $result = call_user_func($this->callback[$message_type], $this->request);
             }else{
