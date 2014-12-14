@@ -20,6 +20,27 @@ use Jenner\Zebra\Wechat\Response\XmlResponse;
  * 该类提供一个before和after，如果你需要在处理微信推送之前或之后做一些处理，可以在你的类中实现这两个方法
  * 如果没有实现before和after，则不会调用
  *
+ * 微信消息推送列表：
+ * text
+ * image
+ * voice
+ * location
+ * link
+ *
+ * 微信事件推送列表
+ * subscribe
+ * unsubscribe
+ * SCAN
+ * LOCATION
+ * CLICK
+ * VIEW
+ * scancode_push
+ * scancode_waitmsg
+ * pic_sysphoto
+ * pic_photo_or_album
+ * pic_weixin
+ * location_select
+ *
  * Class WechatServer
  * @package Jenner\Zebra\Wechat
  */
@@ -35,6 +56,12 @@ abstract class WechatServer
      */
     protected $request;
 
+
+    /**
+     * 微信推送回调函数数组
+     */
+    protected $callback;
+
     /**
      * 构造函数
      * @param $token 微信账号的token
@@ -42,9 +69,23 @@ abstract class WechatServer
     public function __construct($token)
     {
         $this->token = $token;
-        if(method_exists($this, 'before') && is_callable([$this, 'before'])){
-            $this->before();
-        }
+    }
+
+    /**
+     * 注册推送事件回调函数
+     * @param $event
+     * @param $callback
+     */
+    public function listen($event, $callback){
+        $this->callback[$event] = $callback;
+    }
+
+    /**
+     * 解除推送事件回调函数
+     * @param $event
+     */
+    public function unListen($event){
+        unset($this->callback[$event]);
     }
 
     /**
@@ -72,207 +113,47 @@ abstract class WechatServer
         //将下标统一转换为小写，获取信息统一使用$this->getRequest('field_name');
         $this->request = array_change_key_case($request, CASE_LOWER);
 
-        switch ($this->getMsgType()) {
-            case 'text' :
-                $this->onText();
-                break;
-            case 'image' :
-                $this->onImage();
-                break;
-            case 'voice' :
-                $this->onVoice();
-                break;
-            case 'location' :
-                $this->onLocation();
-                break;
-            case 'link' :
-                $this->onLink();
-                break;
-            case 'event' :
-            {
-                switch ($this->getEvent()) {
-                    case 'subscribe':
-                        //扫描二维码关注
-                        if(!is_null($this->getRequest('TICKET'))){
-                            $this->onEventScanSubScribe();
-                        }else{//普通关注
-                            $this->onEventSubscribe();
-                        }
-                        break;
-                    case 'unsubscribe':
-                        $this->onEventUnSubScribe();
-                        break;
-                    case 'SCAN':
-                        $this->onEventScan();
-                        break;
-                    case 'LOCATION':
-                        $this->onEventLocation();
-                        break;
-                    case 'CLICK':
-                        $this->onEventClick();
-                        break;
-                    case 'VIEW' :
-                        $this->onEventView();
-                        break;
-                    case 'scancode_push' :
-                        $this->onScanCodePush();
-                        break;
-                    case 'scancode_waitmsg' :
-                        $this->onScanCodeWaitMsg();
-                        break;
-                    case 'pic_sysphoto' :
-                        $this->onPicSysPhoto();
-                        break;
-                    case 'pic_photo_or_album' :
-                        $this->onPicPhotoOrAlbum();
-                        break;
-                    case 'pic_weixin' :
-                        $this->onPicWeixin();
-                        break;
-                    case 'location_select' :
-                        $this->onLocationSelect();
-                        break;
-                    default :
-                        $this->onUnknownEvent();
-                        break;
-                }
-                break;
+        if(method_exists($this, 'before') && is_callable([$this, 'before'])){
+            $this->before($this->request);
+        }
+
+        if($this->getMsgType() == 'event'){
+            $event_type = $this->getEvent();
+            if(!empty($this->callback[$event_type]) && is_callable($this->callback[$event_type])){
+                $result = call_user_func($this->callback[$event_type], $this->request);
+            }else{
+                $result = $this->onUnListenEvent($this->request);
             }
-            default :
-                $this->onUnknownMessage();
-                break;
+        }else{
+            $message_type = $this->getMsgType();
+            if(!empty($this->callback[$message_type]) && is_callable($this->callback[$message_type])){
+                $result = call_user_func($this->callback[$message_type], $this->request);
+            }else{
+                $result = $this->onUnListenedMessage($this->request);
+            }
         }
 
         if(method_exists($this, 'after') && is_callable([$this, 'after'])){
-            $this->after();
+            $this->after($this->request, $result);
         }
 
     }
 
-    /**
-     * 文本消息推送
-     * @return mixed
-     */
-    abstract public function onText();
-
-    /**
-     * 图片消息推送
-     * @return mixed
-     */
-    abstract public function onImage();
-
-    /**
-     * 语音消息推送
-     * @return mixed
-     */
-    abstract public function onVoice();
-
-    /**
-     * 视频消息推送
-     * @return mixed
-     */
-    abstract public function onVideo();
-
-    /**
-     * 地理位置消息推送
-     * @return mixed
-     */
-    abstract public function onLocation();
-
-    /**
-     * 链接消息推送
-     * @return mixed
-     */
-    abstract public function onLink();
 
     /**
      * 未知消息类型处理
+     * @param $request
      * @return mixed
      */
-    abstract public function onUnknownMessage();
+    abstract public function onUnListenedMessage($request);
+
 
     /**
-     * 普通关注事件推送（不包含扫描二维码关注事件）
+     * 未知事件推送处理
+     * @param $request
      * @return mixed
      */
-    abstract public function onEventSubscribe();
-
-    /**
-     * 取消关注推送
-     * @return mixed
-     */
-    abstract public function onEventUnSubScribe();
-
-    /**
-     * 扫描二维码关注时推送
-     * @return mixed
-     */
-    abstract public function onEventScanSubScribe();
-
-    /**
-     * 用户已关注时扫描二维码的事件推送
-     * @return mixed
-     */
-    abstract public function onEventScan();
-
-    /**
-     * 上报地理位置事件推送
-     * @return mixed
-     */
-    abstract public function onEventLocation();
-
-    /**
-     * 点击菜单拉取消息时的事件推送
-     * @return mixed
-     */
-    abstract public function onEventClick();
-
-    /**
-     * 点击菜单跳转链接时的事件推送
-     * @return mixed
-     */
-    abstract public function onEventView();
-
-    /**
-     * 扫码推事件的事件推送
-     * @return mixed
-     */
-    abstract public function onScanCodePush();
-
-    /**
-     * 扫码推事件且弹出“消息接收中”提示框的事件推送
-     * @return mixed
-     */
-    abstract public function onScanCodeWaitMsg();
-
-    /**
-     * 弹出系统拍照发图的事件推送
-     * @return mixed
-     */
-    abstract public function onPicSysPhoto();
-
-    /**
-     * 弹出拍照或者相册发图的事件推送
-     * @return mixed
-     */
-    abstract public function onPicPhotoOrAlbum();
-
-    /**
-     * 弹出微信相册发图器的事件推送
-     * @return mixed
-     */
-    abstract public function onPicWeixin();
-
-    /**
-     * 弹出地理位置选择器的事件推送
-     * @return mixed
-     */
-    abstract public function onLocationSelect();
-
-    /**
-     * @return mixed
-     */
-    abstract public function onUnknownEvent();
+    abstract public function onUnListenEvent($request);
 
     /**
      * 向服务器发送消息
