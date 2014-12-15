@@ -8,7 +8,7 @@ Zebra-Wechat
 
 [博客地址:www.huyanping.cn](http://www.huyanping.cn/ "程序猿始终不够")
 
-***接收微信推送示例***
+**接收微信推送示例**
 ```php
 use \Jenner\Zebra\Wechat\WechatServer;
 use \Jenner\Zebra\Wechat\Response\TextResponse;
@@ -36,7 +36,7 @@ $server->on('text', function(WechatServer $server, $request){
 ```
 
 
-***主动向微信发送消息***
+**主动向微信发送消息**
 ```php
 define('WECHAT_APP_ID', 'your app id');
 define('WECHAT_SECRET', 'your secret');
