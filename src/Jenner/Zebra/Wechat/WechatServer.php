@@ -24,6 +24,7 @@ use Jenner\Zebra\Wechat\Response\XmlResponse;
  * 可以通过$server->send方法向微信返回消息
  * $request是微信请求的信息，
  * 同时你也可以通过$server->getRequest方法读取request中的信息，另种方式任你选择
+ *
  * 微信消息推送列表(不区分大小写)：
  * text
  * image
@@ -54,7 +55,7 @@ use Jenner\Zebra\Wechat\Response\XmlResponse;
  * Class WechatServer
  * @package Jenner\Zebra\Wechat
  */
-abstract class WechatServer
+class WechatServer
 {
     /**
      * 微信账号的token，验证消息真实性时需要用到
@@ -157,22 +158,6 @@ abstract class WechatServer
 
     }
 
-
-    /**
-     * 未知消息类型处理
-     * @param $request
-     * @return mixed
-     */
-    abstract public function onUnListenedMessage($request);
-
-
-    /**
-     * 未知事件推送处理
-     * @param $request
-     * @return mixed
-     */
-    abstract public function onUnListenEvent($request);
-
     /**
      * 向服务器发送消息
      * @param XmlResponse $response
@@ -190,7 +175,7 @@ abstract class WechatServer
      * @param bool|string $param 参数名，默认为无参
      * @return mixed
      */
-    protected function getRequest($param = FALSE)
+    public function getRequest($param = FALSE)
     {
         if ($param === FALSE) {
             return $this->request;
@@ -206,7 +191,7 @@ abstract class WechatServer
      * 获取消息发送者open_id
      * @return mixed
      */
-    protected function getFromUserName()
+    public function getFromUserName()
     {
         return $this->getRequest('FromUserName');
     }
@@ -215,7 +200,7 @@ abstract class WechatServer
      * 获取消息接受者（一般是自己）的open_id
      * @return mixed
      */
-    protected function getToUserName()
+    public function getToUserName()
     {
         return $this->getRequest('ToUserName');
     }
@@ -224,7 +209,7 @@ abstract class WechatServer
      * 获取消息创建时间
      * @return mixed
      */
-    protected function getCreateTime()
+    public function getCreateTime()
     {
         return $this->getRequest('CreateTime');
     }
@@ -233,7 +218,7 @@ abstract class WechatServer
      * 获取消息类型
      * @return mixed
      */
-    protected function getMsgType()
+    public function getMsgType()
     {
         return $this->getRequest('MsgType');
     }
@@ -242,7 +227,7 @@ abstract class WechatServer
      * 获取事件名称
      * @return mixed
      */
-    protected function getEvent()
+    public function getEvent()
     {
         return $this->getRequest('Event');
     }
@@ -251,7 +236,7 @@ abstract class WechatServer
      * 获取消息ID
      * @return mixed
      */
-    protected function getMsgId()
+    public function getMsgId()
     {
         return $this->getRequest('MsgId');
     }
