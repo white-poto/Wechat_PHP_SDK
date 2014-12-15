@@ -79,7 +79,7 @@ abstract class WechatServer
      * @param $event
      * @param $callback
      */
-    public function listen($event, $callback){
+    public function on($event, $callback){
         $event = strtolower($event);
         $this->callback[$event] = $callback;
     }
@@ -88,7 +88,7 @@ abstract class WechatServer
      * 解除推送事件回调函数
      * @param $event
      */
-    public function unListen($event){
+    public function off($event){
         $event = strtolower($event);
         unset($this->callback[$event]);
     }

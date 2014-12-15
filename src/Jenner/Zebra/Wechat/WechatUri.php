@@ -82,4 +82,40 @@ class WechatUri
      * 长连接转短连接
      */
     const SHORT_URL = '/shorturl'; //长连接转短连接
+
+    /**
+     * 微小店相关接口
+     */
+    const MERCHANT_PREFIX = 'https://api.weixin.qq.com/merchant';
+
+    //微小店商品相关
+    const MERCHANT_GOOD_CREATE = '/create'; //添加商品
+    const MERCHANT_GOOD_DEL = '/del';//删除商品
+    const MERCHANT_GOOD_UPDATE = '/update';//修改商品
+    const MERCHANT_GOOD_GET = '/get';//查询商品
+    const MERCHANT_GOOD_GET_BY_STATUS = '/getbystatus';//根据上下架状态获取商品列表
+    const MERCHANT_GOOD_MOD_STATUS = '/modproductstatus';//商品上下架
+
+    //微小店分类相关
+    const MERCHANT_CATEGORY_GET_SUB = '/category/getsub'; //获取子分类
+    const MERCHANT_CATEGORY_GET_SKU = '/category/getsku'; //获取分类下的sku信息
+    const MERCHANT_CATEGORY_GET_PROPERTY = '/category/getproperty'; //获取分类下的属性
+
+    //微小店库存相关
+    const MERCHANT_STOCK_ADD = '/stock/add'; //添加库存
+    const MERCHANT_STOCK_REDUCE = '/stock/reduce'; //减少库存
+
+    //微小店邮费模相关
+    const MERCHANT_EXPRESS_ADD = '/express/add'; // 邮费模板添加
+    const MERCHANT_EXPRESS_DEL = '/express/del'; //删除邮费模板
+    const MERCHANT_EXPRESS_UPDATE = '/express/update'; //修改邮费模板
+
+    //微小店功能接口相关
+    const MERCHANT_COMMON_UPLOAD_IMG = '/common/upload_img'; //上传图片
+
+    //微小店订单相关
+    const MERCHANT_ORDER_GET_BY_ID = '/order/getbyid'; //根据ID获取订单
+    const MERCHANT_ORDER_GET_BY_FILTER = '/order/getbyfilter'; //根据订单状态/创建时间获取订单详情
+    const MERCHANT_ORDER_SET_DELIVERY = '/order/setdelivery'; //设置订单发货信息
+    const MERCHANT_ORDER_CLOSE = '/order/close'; //关闭订单
 }
