@@ -7,12 +7,12 @@
  * 微信重定向
  */
 
-namespace Jenner\Zebra\Wechat\Client;
+namespace Jenner\Zebra\Wechat;
 
 
 use Jenner\Zebra\Tools\Http;
 use Jenner\Zebra\Wechat\Exception\WechatException;
-use Jenner\Zebra\Wechat\WechatUri;
+use Jenner\Zebra\Wechat\Exception\ResponseErrorException;
 
 class Redirect
 {
@@ -86,6 +86,21 @@ class Redirect
 
         $response = json_decode($response_json, true);
         if (isset($response['errcode'])) {
+            throw new ResponseErrorException($response['errmsg'], $response['errcode']);
+        }
+
+        return $response;
+    }
+
+    /**
+     * 检查微信响应是否出错，如果出错，抛出异常
+     * @param $response_json
+     * @return mixed
+     * @throws \Jenner\Zebra\Wechat\Exception\ResponseErrorException
+     */
+    public function checkResponse($response_json){
+        $response = json_decode($response_json, true);
+        if(isset($response['errcode'])){
             throw new ResponseErrorException($response['errmsg'], $response['errcode']);
         }
 

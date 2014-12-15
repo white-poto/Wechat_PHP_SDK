@@ -45,11 +45,11 @@ class WechatClient {
     public function __construct(){
         //检查WECHAT_APP_ID是否定义
         if(!defined('WECHAT_APP_ID')){
-            throw new WechatAppIdNotDefinedException();
+            throw new WechatException('const WECHAT_APP_ID not defined');
         }
         //检查WECHAT_SECRET常量是否定义
         if(!defined('WECHAT_SECRET')){
-            throw new WechatSecretNotDefinedException();
+            throw new WechatException('const WECHAT_SECRET not defined');
         }
 
         $this->uri_prefix = WechatUri::COMMON_PREFIX;
@@ -137,7 +137,9 @@ class WechatClient {
         $cache['access_token'] = $result['access_token'];
         $cache['expires_in'] = $result['expires_in'];
         $cache['create_time'] = time();
-        call_user_func(self::$set_access_token_callback, $cache);
+        if(!empty(self::$get_access_token_callback) && is_callable(self::$get_access_token_callback)) {
+            call_user_func(self::$set_access_token_callback, $cache);
+        }
 
         return $result['access_token'];
     }
@@ -167,7 +169,7 @@ class WechatClient {
      */
     public function checkResponse($response_json){
         $response = json_decode($response_json, true);
-        if(isset($response['errcode'])){
+        if(isset($response['errcode']) && $response['errcode']!=0){
             throw new ResponseErrorException($response['errmsg'], $response['errcode']);
         }
 

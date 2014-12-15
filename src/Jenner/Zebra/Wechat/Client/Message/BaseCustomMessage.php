@@ -52,12 +52,12 @@ abstract class BaseCustomMessage extends WechatClient
 
     /**
      * 向微信发起请求
-     * @param BaseCustomMessage $message
      * @return bool|mixed
      */
-    public function send(BaseCustomMessage $message)
+    public function send()
     {
-        $params = $message->getMessage();
+        $params = $this->getParams();
+        \Log::info(json_encode($params));
         return $this->request($this->uri, $params);
     }
 } 

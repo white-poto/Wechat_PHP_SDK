@@ -81,5 +81,5 @@ class Good extends Merchant
         return $this->request_post($uri, ['product_id' => $product_id, 'status' => $status]);
     }
 
-
+    
 } 

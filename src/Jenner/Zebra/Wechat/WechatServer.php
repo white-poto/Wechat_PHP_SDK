@@ -16,13 +16,14 @@ use Jenner\Zebra\Wechat\Response\XmlResponse;
 /**
  * 微信推送接收器
  * 你需要继承该抽象类，并实现其抽象方法
- * 对于不同的微信推送，你需要调用listen和unListen函数进行绑定和解绑定
+ * 对于不同的微信推送，你需要调用on和off函数进行绑定和解绑定
  *
- * 该类提供一个before和after，如果你需要在处理微信推送之前或之后做一些处理，可以在你的类中实现这两个方法
- * 如果没有实现before和after，则不会调用
- * before接收一个数组参数，该数组为微信推送请求信息
- * after接收两个参数，request和result，request为微信推送请求信息，result为你注册的处理函数的返回值
- *
+ * 你可以注册以下事件处理监听，未知消息和未知事件处理可以分别注册unknown_message和unknown_event处理
+ * 同时你可以注册before和after函数，分别在时间开始处理前和处理后，做一些其他事情
+ * 除after函数外，这些会回调函数都必须接受两个函数WechatServer $server, $request.$server是WechatServer实例，
+ * 可以通过$server->send方法向微信返回消息
+ * $request是微信请求的信息，
+ * 同时你也可以通过$server->getRequest方法读取request中的信息，另种方式任你选择
  * 微信消息推送列表(不区分大小写)：
  * text
  * image
@@ -30,19 +31,25 @@ use Jenner\Zebra\Wechat\Response\XmlResponse;
  * location
  * link
  *
+ *
  * 微信事件推送列表
- * subscribe
- * unsubscribe
- * SCAN
- * LOCATION
- * CLICK
- * VIEW
- * scancode_push
- * scancode_waitmsg
- * pic_sysphoto
- * pic_photo_or_album
- * pic_weixin
- * location_select
+ * subscribe 关注事件
+ * unsubscribe 取消关注事件
+ * SCAN 扫描带参数二维码事件
+ * LOCATION 上报地理位置事件
+ * CLICK 点击菜单拉取消息时的事件推送
+ * VIEW 点击菜单跳转链接时的事件推送
+ * scancode_push 扫码推事件的事件推送
+ * scancode_waitmsg 扫码推事件且弹出“消息接收中”提示框的事件推送
+ * pic_sysphoto 弹出系统拍照发图的事件推送
+ * pic_photo_or_album 弹出拍照或者相册发图的事件推送
+ * pic_weixin 弹出微信相册发图器的事件推送
+ * location_select 弹出地理位置选择器的事件推送
+ * merchant_order 订单付款时间
+ *
+ * 自定义事件
+ * unknown_event 未知事件推送
+ * unknown_message 未知消息推送
  *
  * Class WechatServer
  * @package Jenner\Zebra\Wechat
@@ -118,30 +125,34 @@ abstract class WechatServer
         //将下标统一转换为小写，获取信息统一使用$this->getRequest('field_name');
         $this->request = array_change_key_case($request, CASE_LOWER);
 
-        if(method_exists($this, 'before') && is_callable([$this, 'before'])){
-            $this->before($this->request);
+        if(!empty($this->callback['before']) && is_callable($this->callback['before'])){
+            $result = call_user_func($this->callback['before'], $this, $request);
         }
 
         if($this->getMsgType() == 'event'){
             $event_type = $this->getEvent();
             $event_type = strtolower($event_type);
             if(!empty($this->callback[$event_type]) && is_callable($this->callback[$event_type])){
-                $result = call_user_func($this->callback[$event_type], $this->request);
+                $result = call_user_func($this->callback[$event_type], $this, $request);
             }else{
-                $result = $this->onUnListenEvent($this->request);
+                if(!empty($this->callback['unknown_message']) && is_callable($this->callback['unknown_message'])){
+                    $result = call_user_func($this->callback['unknown_message'], $this, $request);
+                }
             }
         }else{
             $message_type = $this->getMsgType();
             $message_type = strtolower($message_type);
             if(!empty($this->callback[$message_type]) && is_callable($this->callback[$message_type])){
-                $result = call_user_func($this->callback[$message_type], $this->request);
+                $result = call_user_func($this->callback[$message_type], $this, $request);
             }else{
-                $result = $this->onUnListenedMessage($this->request);
+                if(!empty($this->callback['unknown_event']) && is_callable($this->callback['unknown_event'])){
+                    $result = call_user_func($this->callback['unknown_event'], $this, $request);
+                }
             }
         }
 
-        if(method_exists($this, 'after') && is_callable([$this, 'after'])){
-            $this->after($this->request, $result);
+        if(!empty($this->callback['before']) && is_callable($this->callback['before'])){
+            call_user_func($this->callback['before'], $this, $result);
         }
 
     }

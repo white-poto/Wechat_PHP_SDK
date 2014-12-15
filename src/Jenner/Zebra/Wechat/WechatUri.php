@@ -118,4 +118,11 @@ class WechatUri
     const MERCHANT_ORDER_GET_BY_FILTER = '/order/getbyfilter'; //根据订单状态/创建时间获取订单详情
     const MERCHANT_ORDER_SET_DELIVERY = '/order/setdelivery'; //设置订单发货信息
     const MERCHANT_ORDER_CLOSE = '/order/close'; //关闭订单
+
+    //微小店货架相关
+    const MERCHANT_SHELF_ADD = '/shelf/add'; //添加货架
+    const MERCHANT_SHELF_DEL = '/shelf/del'; //删除货架
+    const MERCHANT_SHELF_MOD = '/shelf/mod'; //修改货架
+    const MERCHANT_SHELF_GET_ALL = '/shelf/getall'; //获取全部货架
+    const MERCHANT_SHELF_GET_BY_ID = '/shelf/getbyid'; //根据货架ID获取货架信息
 }

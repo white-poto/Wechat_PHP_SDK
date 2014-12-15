@@ -34,6 +34,4 @@ class Express extends Merchant
         return $this->request_post($uri, compact('template_id'));
     }
 
-
-
 } 
