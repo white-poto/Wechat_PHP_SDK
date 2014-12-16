@@ -39,6 +39,7 @@ $server->on('text', function(WechatServer $server, $request){
     $server->send($response);
 });
 
+
 //处理微信关注推送
 $server->on('subscribe', function(WechatServer $server, $request){
     $to_user = $server->getFromUserName();
@@ -46,4 +47,6 @@ $server->on('subscribe', function(WechatServer $server, $request){
     $response = new TextResponse($to_user, $from_user, 'thx');
     $server->send($response);
 });
+
+
 
