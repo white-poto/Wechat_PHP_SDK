@@ -53,7 +53,6 @@ $server->on('subscribe', function(WechatServer $server, $request){
 });
 ```
 
-
 **主动向微信发送消息**
 ```php
 define('WECHAT_APP_ID', 'your app id');
