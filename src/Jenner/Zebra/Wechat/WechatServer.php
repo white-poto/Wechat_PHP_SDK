@@ -24,6 +24,7 @@ use Jenner\Zebra\Wechat\Response\XmlResponse;
  * 可以通过$server->send方法向微信返回消息
  * $request是微信请求的信息，
  * 同时你也可以通过$server->getRequest方法读取request中的信息，另种方式任你选择
+ * after函数接收两个参数，WechatServer $server, $result,$result为事件处理函数的返回值
  *
  * 微信消息推送列表(不区分大小写)：
  * text
@@ -152,8 +153,8 @@ class WechatServer
             }
         }
 
-        if(!empty($this->callback['before']) && is_callable($this->callback['before'])){
-            call_user_func($this->callback['before'], $this, $result);
+        if(!empty($this->callback['after']) && is_callable($this->callback['after'])){
+            call_user_func($this->callback['after'], $this, $result);
         }
 
     }
