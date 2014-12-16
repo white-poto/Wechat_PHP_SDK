@@ -11,7 +11,7 @@ namespace Jenner\Zebra\Wechat\Client\Merchant;
 
 use Jenner\Zebra\Wechat\WechatUri;
 
-class Category extends Merchant
+class Category extends BaseMerchant
 {
     /**
      * 获取指定分类的所有子分类

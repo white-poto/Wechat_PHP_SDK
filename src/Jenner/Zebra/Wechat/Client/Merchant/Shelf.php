@@ -10,11 +10,10 @@
 
 namespace Jenner\Zebra\Wechat\Client\Merchant;
 
-
 use Jenner\Zebra\Wechat\Client\WechatClient;
 use Jenner\Zebra\Wechat\WechatUri;
 
-class Shelf extends WechatClient
+class Shelf extends BaseMerchant
 {
 
     /**

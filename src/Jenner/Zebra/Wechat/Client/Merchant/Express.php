@@ -11,7 +11,7 @@ namespace Jenner\Zebra\Wechat\Client\Merchant;
 
 use Jenner\Zebra\Wechat\WechatUri;
 
-class Express extends Merchant
+class Express extends BaseMerchant
 {
     /**
      * 增加邮费模板

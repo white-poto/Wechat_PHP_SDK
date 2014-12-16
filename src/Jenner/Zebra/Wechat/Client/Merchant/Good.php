@@ -12,7 +12,7 @@ namespace Jenner\Zebra\Wechat\Client\Merchant;
 
 use Jenner\Zebra\Wechat\WechatUri;
 
-class Good extends Merchant
+class Good extends BaseMerchant
 {
     /**
      * 新增商品

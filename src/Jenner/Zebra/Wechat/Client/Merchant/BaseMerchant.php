@@ -12,7 +12,7 @@ namespace Jenner\Zebra\Wechat\Client\Merchant;
 use Jenner\Zebra\Wechat\Client\WechatClient;
 use Jenner\Zebra\Wechat\WechatUri;
 
-class Merchant extends WechatClient
+class BaseMerchant extends WechatClient
 {
     public function __construct()
     {

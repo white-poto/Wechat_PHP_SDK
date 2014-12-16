@@ -11,7 +11,7 @@ namespace Jenner\Zebra\Wechat\Client\Merchant;
 
 use Jenner\Zebra\Wechat\WechatUri;
 
-class Order extends Merchant
+class Order extends BaseMerchant
 {
     /**
      * 根据订单ID获取订单信息

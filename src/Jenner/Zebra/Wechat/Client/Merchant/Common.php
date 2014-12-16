@@ -11,7 +11,7 @@ namespace Jenner\Zebra\Wechat\Client\Merchant;
 
 use Jenner\Zebra\Wechat\WechatUri;
 
-class Common extends Merchant {
+class Common extends BaseMerchant {
     public function uploadImage($filename_with_full_path){
         $uri = $this->uri_prefix . WechatUri::MERCHANT_COMMON_UPLOAD_IMG;
         $file_name = basename($filename_with_full_path);

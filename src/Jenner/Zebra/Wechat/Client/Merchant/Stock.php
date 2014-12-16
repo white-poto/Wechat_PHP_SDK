@@ -11,7 +11,7 @@ namespace Jenner\Zebra\Wechat\Client\Merchant;
 
 use Jenner\Zebra\Wechat\WechatUri;
 
-class Stock extends Merchant
+class Stock extends BaseMerchant
 {
     /**
      * 增加库存
