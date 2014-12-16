@@ -125,4 +125,42 @@ class WechatUri
     const MERCHANT_SHELF_MOD = '/shelf/mod'; //修改货架
     const MERCHANT_SHELF_GET_ALL = '/shelf/getall'; //获取全部货架
     const MERCHANT_SHELF_GET_BY_ID = '/shelf/getbyid'; //根据货架ID获取货架信息
+
+    /**
+     * 微信卡卷相关接口
+     */
+    const CARD_PREFIX = 'https://api.weixin.qq.com/card'; //卡卷功能API的URI前缀
+
+    //卡卷相关
+    const CARD_CREATE = '/create'; //创建卡券
+    const CARD_GET = '/get'; //查询卡券详情
+    const CARD_UPDATE = '/update'; //更改卡券信息接口
+
+    //门店相关
+    const CARD_LOCATION_BATCH_ADD = '/location/batchadd';//批量导入门店信息
+    const CARD_LOCATION_BATCH_GET = '/location/batchget';//拉取门店列表
+
+    //颜色相关
+    const CARD_COLOR_GET = '/getcolors';//获取颜色列表接口
+
+    //二维码相关
+    const CARD_QR_CODE_CREATE = '/qrcode/create'; //生成卡券二维码
+
+    const CARD_CODE_CONSUME = '/code/consume'; //卡券核销部分
+    const CARD_CODE_DECRYPT = '/code/decrypt'; //code解码接口
+    const CARD_CODE_GET = '/code/get'; //查询code
+    const CARD_CODE_BATCH_GET = '/card/batchget'; //批量查询卡列表
+    const CARD_CODE_UPDATE = '/code/update'; //更改code
+    const CARD_CODE_UNAVAILABLE = '/code/unavailable'; //设置卡券失效接口
+
+    //白名单相关
+    const CARD_TEST_WHITE_LIST = '/testwhitelist/set'; //设置测试用户白名单
+
+    //会员卡相关
+    const CARD_MEMBER_ACTIVATE = '/membercard/activate'; //激活/绑定会员卡
+    const CARD_MEMBER_UPDATE = '/membercard/updateuser'; //会员卡交易 会员卡交易后每次积分及余额变更需通过接口通知微信，便于后续消息通知及其他扩展功能。
+    const CARD_MOVIE_TICKET = '/movieticket/updateuser'; //领取电影票后通过调用“更新电影票”接口 update 电影信息及用户选座信息。
+    const CARD_BOARDING_PASS_CHECK_IN = '/boardingpass/checkin'; //在线选座
+    const CARD_LUCKY_MONEY_UPDATE_USER_BALANCE = '/luckymoney/updateuserbalance'; //更新红包金额
+
 }
