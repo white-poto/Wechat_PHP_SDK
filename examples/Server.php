@@ -37,6 +37,10 @@ $server->on('text', function(WechatServer $server, $request){
     $from_user = $server->getToUserName();
     $response = new TextResponse($to_user, $from_user, 'hello');
     $server->send($response);
+    $result = 'success';
+
+    //如果你定义了after的回调，这个返回值将作为参数传递给after函数
+    return $result;
 });
 
 

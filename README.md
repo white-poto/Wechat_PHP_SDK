@@ -43,7 +43,12 @@ $server->on('text', function(WechatServer $server, $request){
     $from_user = $server->getToUserName();
     $response = new TextResponse($to_user, $from_user, 'hello');
     $server->send($response);
+    $result = 'success';
+
+    //如果你定义了after的回调，这个返回值将作为参数传递给after函数
+    return $result;
 });
+
 
 //处理微信关注推送
 $server->on('subscribe', function(WechatServer $server, $request){
@@ -52,6 +57,7 @@ $server->on('subscribe', function(WechatServer $server, $request){
     $response = new TextResponse($to_user, $from_user, 'thx');
     $server->send($response);
 });
+
 ```
 
 **主动向微信发送消息**
