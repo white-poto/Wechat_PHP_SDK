@@ -49,6 +49,11 @@ use Jenner\Zebra\Wechat\Response\XmlResponse;
  * location_select 弹出地理位置选择器的事件推送
  * merchant_order 订单付款时间
  *
+ * card_pass_check 生成的卡券通过审核
+ * card_not_pass_check 卡券未通过审核
+ * user_get_card 用户领取卡券
+ * user_del_card 用户删除卡券
+ *
  * 自定义事件
  * unknown_event 未知事件推送
  * unknown_message 未知消息推送
@@ -127,32 +132,51 @@ class WechatServer
         //将下标统一转换为小写，获取信息统一使用$this->getRequest('field_name');
         $this->request = array_change_key_case($request, CASE_LOWER);
 
+        //调用before回调
         if(!empty($this->callback['before']) && is_callable($this->callback['before'])){
             $result = call_user_func($this->callback['before'], $this, $request);
         }
 
+        //处理事件推送
         if($this->getMsgType() == 'event'){
+
+            //处理全局事件回调
+            if(!empty($this->callback['before_event']) && is_callable($this->callback['before_event'])){
+                $result = call_user_func($this->callback['before_event'], $this, $request);
+            }
+
+            //处理事件回调
             $event_type = $this->getEvent();
             $event_type = strtolower($event_type);
             if(!empty($this->callback[$event_type]) && is_callable($this->callback[$event_type])){
                 $result = call_user_func($this->callback[$event_type], $this, $request);
             }else{
-                if(!empty($this->callback['unknown_message']) && is_callable($this->callback['unknown_message'])){
-                    $result = call_user_func($this->callback['unknown_message'], $this, $request);
+                //未定义时间回调处理
+                if(!empty($this->callback['unknown_event']) && is_callable($this->callback['unknown_event'])){
+                    $result = call_user_func($this->callback['unknown_event'], $this, $request);
                 }
             }
         }else{
+
+            //处理全局消息推送回调
+            if(!empty($this->callback['before_message']) && is_callable($this->callback['before_message'])){
+                $result = call_user_func($this->callback['before_message'], $this, $request);
+            }
+
+            //处理消息推送回调
             $message_type = $this->getMsgType();
             $message_type = strtolower($message_type);
             if(!empty($this->callback[$message_type]) && is_callable($this->callback[$message_type])){
                 $result = call_user_func($this->callback[$message_type], $this, $request);
             }else{
-                if(!empty($this->callback['unknown_event']) && is_callable($this->callback['unknown_event'])){
-                    $result = call_user_func($this->callback['unknown_event'], $this, $request);
+                //处理未知消息推送回调
+                if(!empty($this->callback['unknown_message']) && is_callable($this->callback['unknown_message'])){
+                    $result = call_user_func($this->callback['unknown_message'], $this, $request);
                 }
             }
         }
 
+        //全局处理结束回调
         if(!empty($this->callback['after']) && is_callable($this->callback['after'])){
             call_user_func($this->callback['after'], $this, $result);
         }
