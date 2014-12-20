@@ -16,7 +16,7 @@ class Location extends BaseCard {
         $uri = $this->uri_prefix . WechatUri::CARD_LOCATION_BATCH_ADD;
         return $this->request_post($uri, $location);
     }
-    
+
     public function batchGet($offset, $count){
         $uri = $this->uri_prefix . WechatUri::CARD_LOCATION_BATCH_GET;
         return $this->request_post($uri, compact('offset', 'count'));

@@ -29,12 +29,19 @@ class Card extends BaseCard
      * @param $card_id
      * @return bool|mixed
      */
-    public function get($card_id){
+    public function get($card_id)
+    {
         $uri = $this->uri_prefix . WechatUri::CARD_GET;
         return $this->request_post($uri, compact('card_id'));
     }
 
-    public function update($card){
+    /**
+     * 更改卡券信息接口
+     * @param $card
+     * @return bool|mixed
+     */
+    public function update($card)
+    {
         $uri = $this->uri_prefix . WechatUri::CARD_UPDATE;
         return $this->request_post($uri, $card);
     }

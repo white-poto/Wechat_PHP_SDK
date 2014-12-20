@@ -70,10 +70,14 @@ class CustomService extends WechatClient
      * 上传客服头像
      * @param $account
      * @param $img_with_full_path 图片地址，绝对路径
+     * @throws \Jenner\Zebra\Wechat\Exception\WechatException
      * @return bool|mixed
      */
     public function uploadHeadImg($account, $img_with_full_path)
     {
+        if(!file_exists($img_with_full_path) || !is_readable($img_with_full_path))
+            throw new WechatException('file does not exists or file cannot be read.filename:' . $img_with_full_path);
+
         $uri = $this->uri_prefix . WechatUri::CUSTOM_SERVICE_UPLOAD_HEAD_IMG;
         $get_params = ['kf_account' => $account];
         $post_params = ['media' => '@' . $img_with_full_path];

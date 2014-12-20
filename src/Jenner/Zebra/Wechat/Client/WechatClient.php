@@ -8,7 +8,7 @@
 
 namespace Jenner\Zebra\Wechat\Client;
 
-use Jenner\Zebra\Wechat\C;
+use Jenner\Zebra\Wechat\Exception\WechatException;
 use Jenner\Zebra\Wechat\Exception\ResponseErrorException;
 use Jenner\Zebra\Wechat\WechatUri;
 
@@ -28,7 +28,8 @@ use Jenner\Zebra\Wechat\WechatUri;
  * Class WechatClient
  * @package Jenner\Zebra\Wechat\Client
  */
-class WechatClient {
+class WechatClient
+{
 
     //微信API的URI前缀
     protected $uri_prefix;
@@ -42,13 +43,14 @@ class WechatClient {
     /**
      * 初始化微信API_URL前缀
      */
-    public function __construct(){
+    public function __construct()
+    {
         //检查WECHAT_APP_ID是否定义
-        if(!defined('WECHAT_APP_ID')){
+        if (!defined('WECHAT_APP_ID')) {
             throw new WechatException('const WECHAT_APP_ID not defined');
         }
         //检查WECHAT_SECRET常量是否定义
-        if(!defined('WECHAT_SECRET')){
+        if (!defined('WECHAT_SECRET')) {
             throw new WechatException('const WECHAT_SECRET not defined');
         }
 
@@ -56,16 +58,29 @@ class WechatClient {
     }
 
     /**
+     * 注册APP_ID和SECRET
+     * @param $app_id
+     * @param $secret
+     */
+    public static function registerAuthInfo($app_id, $secret)
+    {
+        define('WECHAT_APP_ID', $app_id);
+        define('WECHAT_SECRET', $secret);
+    }
+
+    /**
      * @param $callback
      */
-    public static function registerGetAccessTokenCallback($callback){
+    public static function registerGetAccessTokenCallback($callback)
+    {
         self::$get_access_token_callback = $callback;
     }
 
     /**
      * @param $callback
      */
-    public static function registerSetAccessTokenCallback($callback){
+    public static function registerSetAccessTokenCallback($callback)
+    {
         self::$set_access_token_callback = $callback;
     }
 
@@ -75,7 +90,8 @@ class WechatClient {
      * @param null $params
      * @return bool|mixed
      */
-    public function request_get($uri, $params=null){
+    public function request_get($uri, $params = null)
+    {
         return $this->request($uri, null, $params);
     }
 
@@ -86,7 +102,8 @@ class WechatClient {
      * @param bool $file_upload 是否上传文件
      * @return bool|mixed
      */
-    public function request_post($uri, $post_params, $file_upload=false){
+    public function request_post($uri, $post_params, $file_upload = false)
+    {
         return $this->request($uri, $post_params, $file_upload);
     }
 
@@ -98,8 +115,9 @@ class WechatClient {
      * @param bool $file_upload 是否上传文件
      * @return bool|mixed
      */
-    public function request($uri, $post_params=null, $get_params=null, $file_upload=false){
-         $access_token = $this->getAccessToken();
+    public function request($uri, $post_params = null, $get_params = null, $file_upload = false)
+    {
+        $access_token = $this->getAccessToken();
 
         $get_params['access_token'] = $access_token;
         $query_string = http_build_query($get_params);
@@ -118,8 +136,9 @@ class WechatClient {
      * @internal param $secret
      * @return mixed
      */
-    public function getAccessToken(){
-        if($cache = $this->getAccessTokenAndCheckExpiresIn()) {
+    public function getAccessToken()
+    {
+        if ($cache = $this->getAccessTokenAndCheckExpiresIn()) {
             return $cache['access_token'];
         }
 
@@ -137,7 +156,7 @@ class WechatClient {
         $cache['access_token'] = $result['access_token'];
         $cache['expires_in'] = $result['expires_in'];
         $cache['create_time'] = time();
-        if(!empty(self::$get_access_token_callback) && is_callable(self::$get_access_token_callback)) {
+        if (!empty(self::$get_access_token_callback) && is_callable(self::$get_access_token_callback)) {
             call_user_func(self::$set_access_token_callback, $cache);
         }
 
@@ -148,13 +167,14 @@ class WechatClient {
      * 检查access_key是否过期
      * @return bool
      */
-    public function getAccessTokenAndCheckExpiresIn(){
-        if(empty(self::$get_access_token_callback) || !is_callable(self::$get_access_token_callback)) return false;
+    public function getAccessTokenAndCheckExpiresIn()
+    {
+        if (empty(self::$get_access_token_callback) || !is_callable(self::$get_access_token_callback)) return false;
         $cache = call_user_func(self::$get_access_token_callback);
 
-        if(empty($cache)) return false;
+        if (empty($cache)) return false;
         $now = time();
-        if($now - $cache['create_time'] > $cache['expires_in']){
+        if ($now - $cache['create_time'] > $cache['expires_in']) {
             return false;
         }
 
@@ -167,9 +187,10 @@ class WechatClient {
      * @return mixed
      * @throws \Jenner\Zebra\Wechat\Exception\ResponseErrorException
      */
-    public function checkResponse($response_json){
+    public function checkResponse($response_json)
+    {
         $response = json_decode($response_json, true);
-        if(isset($response['errcode']) && $response['errcode']!=0){
+        if (isset($response['errcode']) && $response['errcode'] != 0) {
             throw new ResponseErrorException($response['errmsg'], $response['errcode']);
         }
 

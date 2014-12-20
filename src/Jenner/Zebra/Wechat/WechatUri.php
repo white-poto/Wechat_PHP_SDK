@@ -126,6 +126,10 @@ class WechatUri
     const MERCHANT_SHELF_GET_ALL = '/shelf/getall'; //获取全部货架
     const MERCHANT_SHELF_GET_BY_ID = '/shelf/getbyid'; //根据货架ID获取货架信息
 
+    //media素材相关
+    const MEDIA_UPLOAD = '/media/upload'; //上传多媒体素材
+    const MEDIA_DOWNLOAD = '/media/get';  //下载多媒体素材
+
     /**
      * 微信卡卷相关接口
      */
