@@ -17,16 +17,18 @@ use Jenner\Zebra\Wechat\Exception\ResponseErrorException;
 class Redirect
 {
 
-    public function __construct(){
+    public function __construct()
+    {
         //检查WECHAT_APP_ID是否定义
-        if(!defined('WECHAT_APP_ID')){
+        if (!defined('WECHAT_APP_ID')) {
             throw new WechatException('const WECHAT_APP_ID not defined');
         }
         //检查WECHAT_SECRET常量是否定义
-        if(!defined('WECHAT_SECRET')){
+        if (!defined('WECHAT_SECRET')) {
             throw new WechatException('const WECHAT_SECRET not defined');
         }
     }
+
     /**
      * 跳转到微信页面认证APP
      * @param $redirect_uri
@@ -98,9 +100,10 @@ class Redirect
      * @return mixed
      * @throws \Jenner\Zebra\Wechat\Exception\ResponseErrorException
      */
-    public function checkResponse($response_json){
+    public function checkResponse($response_json)
+    {
         $response = json_decode($response_json, true);
-        if(isset($response['errcode'])){
+        if (isset($response['errcode'])) {
             throw new ResponseErrorException($response['errmsg'], $response['errcode']);
         }
 

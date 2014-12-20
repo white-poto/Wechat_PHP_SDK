@@ -23,7 +23,7 @@ class Button
      */
     public function __construct($name, $type = null)
     {
-        if(strlen($name)>40)
+        if (strlen($name) > 40)
             throw new WechatException('Illegal name size');
 
         $this->button['name'] = $name;
@@ -41,10 +41,10 @@ class Button
      */
     public function setKey($key)
     {
-        if(empty($key)){
+        if (empty($key)) {
             throw new WechatException('Illegal empty button key');
         }
-        if(strlen($key)>128){
+        if (strlen($key) > 128) {
             throw new WechatException('Illegal button key size');
         }
 
@@ -57,10 +57,10 @@ class Button
      */
     public function setUrl($url)
     {
-        if(empty($url)){
+        if (empty($url)) {
             throw new WechatException('Illegal empty button url');
         }
-        if(strlen($url)>256){
+        if (strlen($url) > 256) {
             throw new WechatException('Illegal button key url');
         }
 
@@ -76,14 +76,15 @@ class Button
         if (!isset($this->button['sub_button']))
             $this->button['sub_button'] = [];
 
-        if(count($this->button)==5){
+        if (count($this->button) == 5) {
             throw new WechatException('too many sub buttons');
         }
 
         $this->button['sub_button'][] = $button->getButton();
     }
 
-    public function getButton(){
+    public function getButton()
+    {
         return $this->button;
     }
 }

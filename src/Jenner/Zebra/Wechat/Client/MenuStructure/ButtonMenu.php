@@ -22,11 +22,11 @@ class ButtonMenu
 
     public function create()
     {
-        if(count($this->buttons) > 3 || count($this->buttons) < 1){
+        if (count($this->buttons) > 3 || count($this->buttons) < 1) {
             throw new WechatException('Illegal button size');
         }
-        foreach($this->buttons as $button){
-            if(strlen($button['name'])>16)
+        foreach ($this->buttons as $button) {
+            if (strlen($button['name']) > 16)
                 throw new WechatException('Illegal button name size');
         }
         return ['button' => $this->buttons];

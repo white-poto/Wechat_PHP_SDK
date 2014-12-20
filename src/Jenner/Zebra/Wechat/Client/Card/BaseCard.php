@@ -10,6 +10,7 @@ namespace Jenner\Zebra\Wechat\Client\Card;
 
 
 use Jenner\Zebra\Wechat\Client\WechatClient;
+use Jenner\Zebra\Wechat\WechatUri;
 
 class BaseCard extends WechatClient
 {

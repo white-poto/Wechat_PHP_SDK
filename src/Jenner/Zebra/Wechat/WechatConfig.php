@@ -11,7 +11,7 @@
 namespace Jenner\Zebra\Wechat;
 
 
-class WechatUri
+class WechatConfig
 {
 
     const COMMON_PREFIX = 'https://api.weixin.qq.com/cgi-bin'; //通用API前缀

@@ -75,7 +75,7 @@ class CustomService extends WechatClient
      */
     public function uploadHeadImg($account, $img_with_full_path)
     {
-        if(!file_exists($img_with_full_path) || !is_readable($img_with_full_path))
+        if (!file_exists($img_with_full_path) || !is_readable($img_with_full_path))
             throw new WechatException('file does not exists or file cannot be read.filename:' . $img_with_full_path);
 
         $uri = $this->uri_prefix . WechatUri::CUSTOM_SERVICE_UPLOAD_HEAD_IMG;
@@ -106,14 +106,15 @@ class CustomService extends WechatClient
      * @throws \Jenner\Zebra\Wechat\Exception\WechatException
      * @return bool|mixed
      */
-    public function getRecord($start_time, $end_time, $open_id, $page_size, $page_index){
-        if($page_size>1000){
+    public function getRecord($start_time, $end_time, $open_id, $page_size, $page_index)
+    {
+        if ($page_size > 1000) {
             throw new WechatException('page_size out of range');
         }
 
         $start_date = date('Y-m-d', $start_time);
         $end_date = date('Y-m-d', $end_time);
-        if($start_date != $end_date){
+        if ($start_date != $end_date) {
             throw new WechatException('param start_time and end_time cannot span multiple days');
         }
 

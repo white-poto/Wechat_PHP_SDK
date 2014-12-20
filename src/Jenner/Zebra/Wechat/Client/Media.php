@@ -12,9 +12,11 @@ namespace Jenner\Zebra\Wechat\Client;
 use Jenner\Zebra\Wechat\Exception\WechatException;
 use Jenner\Zebra\Wechat\WechatUri;
 
-class Media extends WechatClient {
-    public function upload($type, $filename_with_full_path){
-        if(!file_exists($filename_with_full_path) || !is_readable($filename_with_full_path))
+class Media extends WechatClient
+{
+    public function upload($type, $filename_with_full_path)
+    {
+        if (!file_exists($filename_with_full_path) || !is_readable($filename_with_full_path))
             throw new WechatException('file does not exists or file cannot be read.filename:' . $filename_with_full_path);
 
         $uri = $this->uri_prefix . WechatUri::MEDIA_UPLOAD;
@@ -23,7 +25,8 @@ class Media extends WechatClient {
         return $this->request($uri, $post_params, $get_params, true);
     }
 
-    public function uploadImage($filename_with_full_path){
+    public function uploadImage($filename_with_full_path)
+    {
 
     }
 } 

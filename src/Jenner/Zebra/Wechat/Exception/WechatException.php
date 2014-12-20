@@ -9,6 +9,7 @@
 namespace Jenner\Zebra\Wechat\Exception;
 
 
-class WechatException extends \Exception {
+class WechatException extends \Exception
+{
 
 } 

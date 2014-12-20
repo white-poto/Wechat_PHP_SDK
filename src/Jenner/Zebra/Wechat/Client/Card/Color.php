@@ -11,8 +11,10 @@ namespace Jenner\Zebra\Wechat\Client\Card;
 
 use Jenner\Zebra\Wechat\WechatUri;
 
-class Color extends BaseCard {
-    public function get(){
+class Color extends BaseCard
+{
+    public function get()
+    {
         $uri = $this->uri_prefix . WechatUri::CARD_COLOR_GET;
         return $this->request_get($uri);
     }
