@@ -10,7 +10,7 @@
 
 namespace Jenner\Zebra\Wechat\Client\Merchant;
 
-use Jenner\Zebra\Wechat\WechatUri;
+use Jenner\Zebra\Wechat\WechatConfig;
 
 class Good extends BaseMerchant
 {
@@ -21,7 +21,7 @@ class Good extends BaseMerchant
      */
     public function create($product)
     {
-        $uri = $this->uri_prefix . WechatUri::MERCHANT_GOOD_CREATE;
+        $uri = $this->uri_prefix . WechatConfig::MERCHANT_GOOD_CREATE;
         return $this->request_post($uri, $product);
     }
 
@@ -32,7 +32,7 @@ class Good extends BaseMerchant
      */
     public function del($product_id)
     {
-        $uri = $this->uri_prefix . WechatUri::MERCHANT_GOOD_DEL;
+        $uri = $this->uri_prefix . WechatConfig::MERCHANT_GOOD_DEL;
         return $this->request_post($uri, ['product_id' => $product_id]);
     }
 
@@ -43,7 +43,7 @@ class Good extends BaseMerchant
      */
     public function update($product)
     {
-        $uri = $this->uri_prefix . WechatUri::MERCHANT_GOOD_UPDATE;
+        $uri = $this->uri_prefix . WechatConfig::MERCHANT_GOOD_UPDATE;
         return $this->request_post($uri, $product);
     }
 
@@ -54,7 +54,7 @@ class Good extends BaseMerchant
      */
     public function get($product_id)
     {
-        $uri = $this->uri_prefix . WechatUri::MERCHANT_GOOD_GET;
+        $uri = $this->uri_prefix . WechatConfig::MERCHANT_GOOD_GET;
         return $this->request_post($uri, ['product_id' => $product_id]);
     }
 
@@ -65,7 +65,7 @@ class Good extends BaseMerchant
      */
     public function getByStatus($status)
     {
-        $uri = $this->uri_prefix . WechatUri::MERCHANT_GOOD_GET_BY_STATUS;
+        $uri = $this->uri_prefix . WechatConfig::MERCHANT_GOOD_GET_BY_STATUS;
         return $this->request_post($uri, ['status' => $status]);
     }
 
@@ -77,7 +77,7 @@ class Good extends BaseMerchant
      */
     public function modStatus($product_id, $status)
     {
-        $uri = $this->uri_prefix . WechatUri::MERCHANT_GOOD_MOD_STATUS;
+        $uri = $this->uri_prefix . WechatConfig::MERCHANT_GOOD_MOD_STATUS;
         return $this->request_post($uri, ['product_id' => $product_id, 'status' => $status]);
     }
 

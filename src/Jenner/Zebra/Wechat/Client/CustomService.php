@@ -9,7 +9,7 @@
 namespace Jenner\Zebra\Wechat\Client;
 
 use Jenner\Zebra\Wechat\Exception\WechatException;
-use Jenner\Zebra\Wechat\WechatUri;
+use Jenner\Zebra\Wechat\WechatConfig;
 
 /**
  * 客服管理
@@ -24,7 +24,7 @@ class CustomService extends WechatClient
      */
     public function get()
     {
-        $uri = $this->uri_prefix . WechatUri::CUSTOM_SERVICE_LIST;
+        $uri = $this->uri_prefix . WechatConfig::CUSTOM_SERVICE_LIST;
         return $this->request_get($uri);
     }
 
@@ -34,7 +34,7 @@ class CustomService extends WechatClient
      */
     public function getOnline()
     {
-        $uri = $this->uri_prefix . WechatUri::CUSTOM_SERVICE_ONLINE_LIST;
+        $uri = $this->uri_prefix . WechatConfig::CUSTOM_SERVICE_ONLINE_LIST;
         return $this->request_get($uri);
     }
 
@@ -47,7 +47,7 @@ class CustomService extends WechatClient
      */
     public function add($account, $nickname, $password)
     {
-        $uri = $this->uri_prefix . WechatUri::CUSTOM_SERVICE_ADD;
+        $uri = $this->uri_prefix . WechatConfig::CUSTOM_SERVICE_ADD;
         $params = ['account' => $account, 'nickname' => $nickname, 'password' => $password];
         return $this->request_post($uri, $params);
     }
@@ -61,7 +61,7 @@ class CustomService extends WechatClient
      */
     public function update($account, $nickname, $password)
     {
-        $uri = $this->uri_prefix . WechatUri::CUSTOM_SERVICE_UPDATE;
+        $uri = $this->uri_prefix . WechatConfig::CUSTOM_SERVICE_UPDATE;
         $params = ['account' => $account, 'nickname' => $nickname, 'password' => $password];
         return $this->request_post($uri, $params);
     }
@@ -78,7 +78,7 @@ class CustomService extends WechatClient
         if (!file_exists($img_with_full_path) || !is_readable($img_with_full_path))
             throw new WechatException('file does not exists or file cannot be read.filename:' . $img_with_full_path);
 
-        $uri = $this->uri_prefix . WechatUri::CUSTOM_SERVICE_UPLOAD_HEAD_IMG;
+        $uri = $this->uri_prefix . WechatConfig::CUSTOM_SERVICE_UPLOAD_HEAD_IMG;
         $get_params = ['kf_account' => $account];
         $post_params = ['media' => '@' . $img_with_full_path];
         return $this->request($uri, $post_params, $get_params, true);
@@ -91,7 +91,7 @@ class CustomService extends WechatClient
      */
     public function delete($account)
     {
-        $uri = $this->uri_prefix . WechatUri::CUSTOM_SERVICE_DELETE;
+        $uri = $this->uri_prefix . WechatConfig::CUSTOM_SERVICE_DELETE;
         $params = ['kf_account' => $account];
         return $this->request_get($uri, $params);
     }
@@ -118,7 +118,7 @@ class CustomService extends WechatClient
             throw new WechatException('param start_time and end_time cannot span multiple days');
         }
 
-        $uri = $this->uri_prefix . WechatUri::CUSTOM_SERVICE_RECORD;
+        $uri = $this->uri_prefix . WechatConfig::CUSTOM_SERVICE_RECORD;
         $params = [
             'starttime' => $start_time,
             'endtime' => $end_time,

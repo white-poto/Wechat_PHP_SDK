@@ -9,7 +9,7 @@
 namespace Jenner\Zebra\Wechat\Client\Card;
 
 
-use Jenner\Zebra\Wechat\WechatUri;
+use Jenner\Zebra\Wechat\WechatConfig;
 
 class LuckyMoney extends BaseCard
 {
@@ -20,7 +20,7 @@ class LuckyMoney extends BaseCard
      */
     public function updateUserBalance($card)
     {
-        $uri = $this->uri_prefix . WechatUri::CARD_LUCKY_MONEY_UPDATE_USER_BALANCE;
+        $uri = $this->uri_prefix . WechatConfig::CARD_LUCKY_MONEY_UPDATE_USER_BALANCE;
         return $this->request_post($uri, $card);
     }
 } 

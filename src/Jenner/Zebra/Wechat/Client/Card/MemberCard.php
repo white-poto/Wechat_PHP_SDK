@@ -9,7 +9,7 @@
 namespace Jenner\Zebra\Wechat\Client\Card;
 
 
-use Jenner\Zebra\Wechat\WechatUri;
+use Jenner\Zebra\Wechat\WechatConfig;
 
 class MemberCard extends BaseCard
 {
@@ -20,7 +20,7 @@ class MemberCard extends BaseCard
      */
     public function activate($card)
     {
-        $uri = $this->uri_prefix . WechatUri::CARD_MEMBER_ACTIVATE;
+        $uri = $this->uri_prefix . WechatConfig::CARD_MEMBER_ACTIVATE;
         return $this->request_post($uri, $card);
     }
 
@@ -31,7 +31,7 @@ class MemberCard extends BaseCard
      */
     public function updateUser($member_card)
     {
-        $uri = $this->uri_prefix . WechatUri::CARD_MEMBER_UPDATE;
+        $uri = $this->uri_prefix . WechatConfig::CARD_MEMBER_UPDATE;
         return $this->request_post($uri, $member_card);
     }
 } 

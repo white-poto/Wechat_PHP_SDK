@@ -9,13 +9,13 @@
 namespace Jenner\Zebra\Wechat\Client\Card;
 
 
-use Jenner\Zebra\Wechat\WechatUri;
+use Jenner\Zebra\Wechat\WechatConfig;
 
 class Color extends BaseCard
 {
     public function get()
     {
-        $uri = $this->uri_prefix . WechatUri::CARD_COLOR_GET;
+        $uri = $this->uri_prefix . WechatConfig::CARD_COLOR_GET;
         return $this->request_get($uri);
     }
 } 

@@ -11,7 +11,7 @@
 namespace Jenner\Zebra\Wechat\Client\Message;
 
 use Jenner\Zebra\Wechat\Client\WechatClient;
-use Jenner\Zebra\Wechat\WechatUri;
+use Jenner\Zebra\Wechat\WechatConfig;
 
 
 /**
@@ -38,7 +38,7 @@ abstract class BaseCustomMessage extends WechatClient
     {
         parent::__construct();
         $this->params['touser'] = $to_user;
-        $this->uri = $this->uri_prefix . WechatUri::MESSAGE_SEND;
+        $this->uri = $this->uri_prefix . WechatConfig::MESSAGE_SEND;
     }
 
     /**

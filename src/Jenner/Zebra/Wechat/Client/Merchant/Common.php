@@ -9,7 +9,7 @@
 namespace Jenner\Zebra\Wechat\Client\Merchant;
 
 
-use Jenner\Zebra\Wechat\WechatUri;
+use Jenner\Zebra\Wechat\WechatConfig;
 
 class Common extends BaseMerchant
 {
@@ -18,7 +18,7 @@ class Common extends BaseMerchant
         if (!file_exists($filename_with_full_path) || !is_readable($filename_with_full_path))
             throw new WechatException('file does not exists or file cannot be read.filename:' . $filename_with_full_path);
 
-        $uri = $this->uri_prefix . WechatUri::MERCHANT_COMMON_UPLOAD_IMG;
+        $uri = $this->uri_prefix . WechatConfig::MERCHANT_COMMON_UPLOAD_IMG;
         $file_name = basename($filename_with_full_path);
         return $this->request($uri, ['filename' => $file_name], file_get_contents($filename_with_full_path), true);
     }

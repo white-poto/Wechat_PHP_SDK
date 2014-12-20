@@ -10,13 +10,13 @@ namespace Jenner\Zebra\Wechat\Client\Card;
 
 
 use Jenner\Zebra\Wechat\Client\WechatClient;
-use Jenner\Zebra\Wechat\WechatUri;
+use Jenner\Zebra\Wechat\WechatConfig;
 
 class BaseCard extends WechatClient
 {
     public function __construct()
     {
         parent::__construct();
-        $this->uri_prefix = WechatUri::CARD_PREFIX;
+        $this->uri_prefix = WechatConfig::CARD_PREFIX;
     }
 } 

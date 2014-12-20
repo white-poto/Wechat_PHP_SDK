@@ -8,7 +8,7 @@
 
 namespace Jenner\Zebra\Wechat\Client\Card;
 
-use Jenner\Zebra\Wechat\WechatUri;
+use Jenner\Zebra\Wechat\WechatConfig;
 
 class Card extends BaseCard
 {
@@ -19,7 +19,7 @@ class Card extends BaseCard
      */
     public function create($card)
     {
-        $uri = $this->uri_prefix . WechatUri::CARD_CREATE;
+        $uri = $this->uri_prefix . WechatConfig::CARD_CREATE;
         return $this->request_post($uri, $card);
     }
 
@@ -31,7 +31,7 @@ class Card extends BaseCard
      */
     public function get($card_id)
     {
-        $uri = $this->uri_prefix . WechatUri::CARD_GET;
+        $uri = $this->uri_prefix . WechatConfig::CARD_GET;
         return $this->request_post($uri, compact('card_id'));
     }
 
@@ -42,7 +42,7 @@ class Card extends BaseCard
      */
     public function update($card)
     {
-        $uri = $this->uri_prefix . WechatUri::CARD_UPDATE;
+        $uri = $this->uri_prefix . WechatConfig::CARD_UPDATE;
         return $this->request_post($uri, $card);
     }
 } 
