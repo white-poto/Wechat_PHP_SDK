@@ -93,8 +93,7 @@ class WechatServer
      * @param $event
      * @param $callback
      */
-    public function on($event, $callback)
-    {
+    public function on($event, $callback){
         $event = strtolower($event);
         $this->callback[$event] = $callback;
     }
@@ -103,8 +102,7 @@ class WechatServer
      * 解除推送事件回调函数
      * @param $event
      */
-    public function off($event)
-    {
+    public function off($event){
         $event = strtolower($event);
         unset($this->callback[$event]);
     }
@@ -135,51 +133,51 @@ class WechatServer
         $this->request = array_change_key_case($request, CASE_LOWER);
 
         //调用before回调
-        if (!empty($this->callback['before']) && is_callable($this->callback['before'])) {
+        if(!empty($this->callback['before']) && is_callable($this->callback['before'])){
             $result = call_user_func($this->callback['before'], $this, $request);
         }
 
         //处理事件推送
-        if ($this->getMsgType() == 'event') {
+        if($this->getMsgType() == 'event'){
 
             //处理全局事件回调
-            if (!empty($this->callback['before_event']) && is_callable($this->callback['before_event'])) {
+            if(!empty($this->callback['before_event']) && is_callable($this->callback['before_event'])){
                 $result = call_user_func($this->callback['before_event'], $this, $request);
             }
 
             //处理事件回调
             $event_type = $this->getEvent();
             $event_type = strtolower($event_type);
-            if (!empty($this->callback[$event_type]) && is_callable($this->callback[$event_type])) {
+            if(!empty($this->callback[$event_type]) && is_callable($this->callback[$event_type])){
                 $result = call_user_func($this->callback[$event_type], $this, $request);
-            } else {
+            }else{
                 //未定义时间回调处理
-                if (!empty($this->callback['unknown_event']) && is_callable($this->callback['unknown_event'])) {
+                if(!empty($this->callback['unknown_event']) && is_callable($this->callback['unknown_event'])){
                     $result = call_user_func($this->callback['unknown_event'], $this, $request);
                 }
             }
-        } else {
+        }else{
 
             //处理全局消息推送回调
-            if (!empty($this->callback['before_message']) && is_callable($this->callback['before_message'])) {
+            if(!empty($this->callback['before_message']) && is_callable($this->callback['before_message'])){
                 $result = call_user_func($this->callback['before_message'], $this, $request);
             }
 
             //处理消息推送回调
             $message_type = $this->getMsgType();
             $message_type = strtolower($message_type);
-            if (!empty($this->callback[$message_type]) && is_callable($this->callback[$message_type])) {
+            if(!empty($this->callback[$message_type]) && is_callable($this->callback[$message_type])){
                 $result = call_user_func($this->callback[$message_type], $this, $request);
-            } else {
+            }else{
                 //处理未知消息推送回调
-                if (!empty($this->callback['unknown_message']) && is_callable($this->callback['unknown_message'])) {
+                if(!empty($this->callback['unknown_message']) && is_callable($this->callback['unknown_message'])){
                     $result = call_user_func($this->callback['unknown_message'], $this, $request);
                 }
             }
         }
 
         //全局处理结束回调
-        if (!empty($this->callback['after']) && is_callable($this->callback['after'])) {
+        if(!empty($this->callback['after']) && is_callable($this->callback['after'])){
             call_user_func($this->callback['after'], $this, $result);
         }
 

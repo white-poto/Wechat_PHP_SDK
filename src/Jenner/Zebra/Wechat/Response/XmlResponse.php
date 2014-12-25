@@ -50,14 +50,14 @@ abstract class XmlResponse
         $this->replace['CreateTime'] = time();
         $replace_keys = array_keys($this->replace);
         $response = $this->template;
-        foreach ($replace_keys as $key) {
+        foreach($replace_keys as $key){
             //字符串转换，使其支持下划线、中划线写法
-            if (strstr($key, '-') || strstr($key, '_')) {
+            if(strstr($key, '-') || strstr($key, '_')){
                 $search = '{' . $this->studlyCase($key) . '}';
-            } else {
+            }else{
                 $search = '{' . $key . '}';
             }
-            if (!strstr($response, $search)) continue;
+            if(!strstr($response, $search)) continue;
             $response = str_replace($search, $this->replace[$key], $response);
         }
 

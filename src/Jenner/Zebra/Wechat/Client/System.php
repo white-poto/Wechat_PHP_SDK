@@ -10,13 +10,13 @@ namespace Jenner\Zebra\Wechat\Client;
 
 
 use Jenner\Zebra\Wechat\C;
-use Jenner\Zebra\Wechat\WechatConfig;
+use Jenner\Zebra\Wechat\WechatUri;
 
 class System extends WechatClient
 {
     public function getIpList()
     {
-        $uri = $this->uri_prefix . WechatConfig::AUTH_GET_CALLBACK_IP;
+        $uri = $this->uri_prefix . WechatUri::AUTH_GET_CALLBACK_IP;
         $result = $this->request_get($uri);
 
         return $result;

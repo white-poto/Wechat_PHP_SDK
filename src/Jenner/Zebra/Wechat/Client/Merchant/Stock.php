@@ -9,7 +9,7 @@
 namespace Jenner\Zebra\Wechat\Client\Merchant;
 
 
-use Jenner\Zebra\Wechat\WechatConfig;
+use Jenner\Zebra\Wechat\WechatUri;
 
 class Stock extends BaseMerchant
 {
@@ -22,7 +22,7 @@ class Stock extends BaseMerchant
      */
     public function add($product_id, $quantity, $sku_info)
     {
-        $uri = $this->uri_prefix . WechatConfig::MERCHANT_STOCK_ADD;
+        $uri = $this->merchant_uri_prefix . WechatUri::MERCHANT_STOCK_ADD;
         $params = [
             'product_id' => $product_id,
             'quantity' => $quantity,

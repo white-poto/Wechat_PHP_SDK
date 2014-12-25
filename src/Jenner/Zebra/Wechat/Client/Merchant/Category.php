@@ -9,7 +9,7 @@
 namespace Jenner\Zebra\Wechat\Client\Merchant;
 
 
-use Jenner\Zebra\Wechat\WechatConfig;
+use Jenner\Zebra\Wechat\WechatUri;
 
 class Category extends BaseMerchant
 {
@@ -20,7 +20,7 @@ class Category extends BaseMerchant
      */
     public function getSub($category_id)
     {
-        $uri = $this->uri_prefix . WechatConfig::MERCHANT_CATEGORY_GET_SUB;
+        $uri = $this->merchant_uri_prefix . WechatUri::MERCHANT_CATEGORY_GET_SUB;
         return $this->request_post($uri, ['cate_id' => $category_id]);
     }
 
@@ -31,7 +31,7 @@ class Category extends BaseMerchant
      */
     public function getSku($category_id)
     {
-        $uri = $this->uri_prefix . WechatConfig::MERCHANT_CATEGORY_GET_SKU;
+        $uri = $this->merchant_uri_prefix . WechatUri::MERCHANT_CATEGORY_GET_SKU;
         return $this->request_post($uri, ['cate_id' => $category_id]);
     }
 
@@ -42,7 +42,7 @@ class Category extends BaseMerchant
      */
     public function getProperty($category_id)
     {
-        $uri = $this->uri_prefix . WechatConfig::MERCHANT_CATEGORY_GET_PROPERTY;
+        $uri = $this->merchant_uri_prefix . WechatUri::MERCHANT_CATEGORY_GET_PROPERTY;
         return $this->request_post($uri, ['cate_id' => $category_id]);
     }
 

@@ -11,10 +11,8 @@ namespace Jenner\Zebra\Wechat\Client\Menu;
 
 use Jenner\Zebra\Wechat\Client\WechatClient;
 
-class Semantic extends WechatClient
-{
-    public function search($uid, $category, $query, $protocol_param)
-    {
+class Semantic extends WechatClient {
+    public function search($uid, $category, $query, $protocol_param){
         $params = [
             'appid' => WECHAT_APP_ID,
             'uid' => $uid,

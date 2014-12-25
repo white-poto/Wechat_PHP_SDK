@@ -9,7 +9,7 @@
 namespace Jenner\Zebra\Wechat\Client\Card;
 
 
-use Jenner\Zebra\Wechat\WechatConfig;
+use Jenner\Zebra\Wechat\WechatUri;
 
 class WhiteList extends BaseCard
 {
@@ -20,7 +20,7 @@ class WhiteList extends BaseCard
      */
     public function set($list)
     {
-        $uri = $this->uri_prefix . WechatConfig::CARD_TEST_WHITE_LIST;
+        $uri = $this->uri_prefix . WechatUri::CARD_TEST_WHITE_LIST;
         return $this->request_post($uri, $list);
     }
 } 

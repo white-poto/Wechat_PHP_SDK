@@ -9,7 +9,7 @@
 namespace Jenner\Zebra\Wechat\Client\Card;
 
 
-use Jenner\Zebra\Wechat\WechatConfig;
+use Jenner\Zebra\Wechat\WechatUri;
 
 class QrCode extends BaseCard
 {
@@ -20,7 +20,7 @@ class QrCode extends BaseCard
      */
     public function create($qr_code)
     {
-        $uri = $this->uri_prefix . WechatConfig::CARD_QR_CODE_CREATE;
+        $uri = $this->uri_prefix . WechatUri::CARD_QR_CODE_CREATE;
         return $this->request_post($uri, $qr_code);
     }
 
