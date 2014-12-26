@@ -163,4 +163,5 @@ class WechatUri
     const CARD_BOARDING_PASS_CHECK_IN = '/boardingpass/checkin'; //在线选座
     const CARD_LUCKY_MONEY_UPDATE_USER_BALANCE = '/luckymoney/updateuserbalance'; //更新红包金额
 
+    
 }
