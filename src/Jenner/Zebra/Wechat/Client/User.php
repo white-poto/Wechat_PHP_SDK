@@ -68,4 +68,5 @@ class User extends WechatClient
 
         return $result;
     }
-} 
+}
+
