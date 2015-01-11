@@ -11,7 +11,7 @@
 namespace Jenner\Zebra\Wechat\Client\Merchant;
 
 use Jenner\Zebra\Wechat\Client\WechatClient;
-use Jenner\Zebra\Wechat\WechatUri;
+use Jenner\Zebra\Wechat\WechatConfig;
 
 class Shelf extends BaseMerchant
 {
@@ -23,7 +23,7 @@ class Shelf extends BaseMerchant
      */
     public function add($shelf)
     {
-        $uri = $this->merchant_uri_prefix . WechatUri::MERCHANT_SHELF_ADD;
+        $uri = $this->merchant_uri_prefix . WechatConfig::MERCHANT_SHELF_ADD;
         return $this->request_post($uri, $shelf);
     }
 
@@ -34,7 +34,7 @@ class Shelf extends BaseMerchant
      */
     public function del($shelf_id)
     {
-        $uri = $this->merchant_uri_prefix . WechatUri::MERCHANT_SHELF_DEL;
+        $uri = $this->merchant_uri_prefix . WechatConfig::MERCHANT_SHELF_DEL;
         return $this->request_post($uri, compact('shelf_id'));
     }
 
@@ -45,7 +45,7 @@ class Shelf extends BaseMerchant
      */
     public function update($shelf)
     {
-        $uri = $this->merchant_uri_prefix . WechatUri::MERCHANT_SHELF_MOD;
+        $uri = $this->merchant_uri_prefix . WechatConfig::MERCHANT_SHELF_MOD;
         return $this->request_post($uri, $shelf);
     }
 
@@ -55,7 +55,7 @@ class Shelf extends BaseMerchant
      */
     public function getAll()
     {
-        $uri = $this->merchant_uri_prefix . WechatUri::MERCHANT_SHELF_GET_ALL;
+        $uri = $this->merchant_uri_prefix . WechatConfig::MERCHANT_SHELF_GET_ALL;
         return $this->request_get($uri);
     }
 
@@ -66,7 +66,7 @@ class Shelf extends BaseMerchant
      */
     public function getById($shelf_id)
     {
-        $uri = $this->merchant_uri_prefix . WechatUri::MERCHANT_SHELF_GET_BY_ID;
+        $uri = $this->merchant_uri_prefix . WechatConfig::MERCHANT_SHELF_GET_BY_ID;
         return $this->request_post($uri, compact('shelf_id'));
     }
 } 

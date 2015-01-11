@@ -9,7 +9,7 @@
 namespace Jenner\Zebra\Wechat\Client\Merchant;
 
 
-use Jenner\Zebra\Wechat\WechatUri;
+use Jenner\Zebra\Wechat\WechatConfig;
 
 class Order extends BaseMerchant
 {
@@ -20,7 +20,7 @@ class Order extends BaseMerchant
      */
     public function getById($order_id)
     {
-        $uri = $this->merchant_uri_prefix . WechatUri::MERCHANT_ORDER_GET_BY_ID;
+        $uri = $this->merchant_uri_prefix . WechatConfig::MERCHANT_ORDER_GET_BY_ID;
         return $this->request_post($uri, ['order_id' => $order_id]);
     }
 
@@ -29,7 +29,7 @@ class Order extends BaseMerchant
      */
     public function getByFilter($status=null, $begin_time=null, $end_time=null)
     {
-        $uri = $this->merchant_uri_prefix . WechatUri::MERCHANT_ORDER_GET_BY_FILTER;
+        $uri = $this->merchant_uri_prefix . WechatConfig::MERCHANT_ORDER_GET_BY_FILTER;
         is_null($status) ? '' : $params['status'] = $status;
         is_null($begin_time) ? '' : $params['begintime'] = $begin_time;
         is_null($end_time) ? '' : $params['endtime'] = $end_time;
@@ -48,7 +48,7 @@ class Order extends BaseMerchant
      */
     public function setDelivery($order_id, $delivery_company, $delivery_track_no, $need_delivery, $is_others)
     {
-        $uri = $this->merchant_uri_prefix . WechatUri::MERCHANT_ORDER_SET_DELIVERY;
+        $uri = $this->merchant_uri_prefix . WechatConfig::MERCHANT_ORDER_SET_DELIVERY;
         $params = compact('order_id', 'delivery_company', 'delivery_track_no', 'need_delivery', 'is_others');
         return $this->request_post($uri, $params);
     }
@@ -60,7 +60,7 @@ class Order extends BaseMerchant
      */
     public function close($order_id)
     {
-        $uri = $this->merchant_uri_prefix . WechatUri::MERCHANT_ORDER_CLOSE;
+        $uri = $this->merchant_uri_prefix . WechatConfig::MERCHANT_ORDER_CLOSE;
         return $this->request_post($uri, ['order_id' => $order_id]);
     }
 } 

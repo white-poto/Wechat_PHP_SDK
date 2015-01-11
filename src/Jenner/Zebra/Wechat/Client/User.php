@@ -9,7 +9,7 @@
 namespace Jenner\Zebra\Wechat\Client;
 
 use Jenner\Zebra\Wechat\C;
-use Jenner\Zebra\Wechat\WechatUri;
+use Jenner\Zebra\Wechat\WechatConfig;
 
 class User extends WechatClient
 {
@@ -22,7 +22,7 @@ class User extends WechatClient
      */
     public function updateRemark($openid, $remark)
     {
-        $uri = $this->uri_prefix . WechatUri::USER_UPDATE_REMARK;
+        $uri = $this->uri_prefix . WechatConfig::USER_UPDATE_REMARK;
         $params = ['openid' => $openid, 'remark' => $remark];
         $result = $this->request_get($uri, $params);
 
@@ -37,7 +37,7 @@ class User extends WechatClient
      */
     public function info($openid, $lang = 'zh_CN')
     {
-        $uri = $this->uri_prefix . WechatUri::USER_INFO;
+        $uri = $this->uri_prefix . WechatConfig::USER_INFO;
         $params = ['openid' => $openid, 'lang' => $lang];
         $response = $this->request_get($uri, $params);
 
@@ -50,7 +50,7 @@ class User extends WechatClient
      */
     public function getAll()
     {
-        $uri = $this->uri_prefix . WechatUri::USER_GET;
+        $uri = $this->uri_prefix . WechatConfig::USER_GET;
         $data = $openid_list = [];
         while (true) {
             if ($data) {

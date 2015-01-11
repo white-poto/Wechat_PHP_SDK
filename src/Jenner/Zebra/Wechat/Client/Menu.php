@@ -9,7 +9,7 @@
 namespace Jenner\Zebra\Wechat\Client;
 
 
-use Jenner\Zebra\Wechat\WechatUri;
+use Jenner\Zebra\Wechat\WechatConfig;
 
 class Menu extends WechatClient
 {
@@ -19,7 +19,7 @@ class Menu extends WechatClient
      */
     public function get()
     {
-        $uri = $this->uri_prefix . WechatUri::MENU_GET;
+        $uri = $this->uri_prefix . WechatConfig::MENU_GET;
         return $this->request_get($uri);
     }
 
@@ -29,7 +29,7 @@ class Menu extends WechatClient
      */
     public function delete()
     {
-        $uri = $this->uri_prefix . WechatUri::MENU_DELETE;
+        $uri = $this->uri_prefix . WechatConfig::MENU_DELETE;
         return $this->request_get($uri);
     }
 
@@ -46,7 +46,7 @@ class Menu extends WechatClient
      */
     public function create($menu)
     {
-        $uri = $this->uri_prefix . WechatUri::MENU_CREATE;
+        $uri = $this->uri_prefix . WechatConfig::MENU_CREATE;
         return $this->request_post($uri, $menu);
     }
 }

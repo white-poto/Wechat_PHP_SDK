@@ -9,7 +9,7 @@
 namespace Jenner\Zebra\Wechat\Client\Card;
 
 
-use Jenner\Zebra\Wechat\WechatUri;
+use Jenner\Zebra\Wechat\WechatConfig;
 
 class MovieTicket extends BaseCard
 {
@@ -20,7 +20,7 @@ class MovieTicket extends BaseCard
      */
     public function updateUser($card)
     {
-        $uri = $this->uri_prefix . WechatUri::CARD_MOVIE_TICKET;
+        $uri = $this->uri_prefix . WechatConfig::CARD_MOVIE_TICKET;
         return $this->request_post($uri, $card);
     }
 } 

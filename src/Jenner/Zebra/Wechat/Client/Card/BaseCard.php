@@ -16,6 +16,6 @@ class BaseCard extends WechatClient
     public function __construct()
     {
         parent::__construct();
-        $this->uri_prefix = WechatUri::CARD_PREFIX;
+        $this->uri_prefix = WechatConfig::CARD_PREFIX;
     }
 } 

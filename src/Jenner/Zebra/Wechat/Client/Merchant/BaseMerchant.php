@@ -10,7 +10,7 @@ namespace Jenner\Zebra\Wechat\Client\Merchant;
 
 
 use Jenner\Zebra\Wechat\Client\WechatClient;
-use Jenner\Zebra\Wechat\WechatUri;
+use Jenner\Zebra\Wechat\WechatConfig;
 
 class BaseMerchant extends WechatClient
 {
@@ -19,6 +19,6 @@ class BaseMerchant extends WechatClient
     public function __construct()
     {
         parent::__construct();
-        $this->merchant_uri_prefix = WechatUri::MERCHANT_PREFIX;
+        $this->merchant_uri_prefix = WechatConfig::MERCHANT_PREFIX;
     }
 } 

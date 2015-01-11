@@ -50,7 +50,7 @@ class Redirect
     protected function redirectToWechat($redirect_uri, $scope = 'snsapi_base')
     {
         $response_type = 'code';
-        $redirect_uri = WechatUri::REDIRECT_AUTH . '?appid='
+        $redirect_uri = WechatConfig::REDIRECT_AUTH . '?appid='
             . WECHAT_APP_ID . '&redirect_uri=' . urlencode($redirect_uri)
             . '&response_type=' . $response_type
             . '&scope=' . $scope . '#wechat_redirect';
@@ -66,7 +66,7 @@ class Redirect
             'code' => $code,
             'grant_type' => 'authorization_code',
         ];
-        $uri = WechatUri::REDIRECT_TOKEN;
+        $uri = WechatConfig::REDIRECT_TOKEN;
         $http = new Http($uri);
         $response_json = $http->GET($params);
 
@@ -80,7 +80,7 @@ class Redirect
             'openid' => $openid,
             'lang' => $lang,
         ];
-        $uri = WechatUri::REDIRECT_USER_INFO;
+        $uri = WechatConfig::REDIRECT_USER_INFO;
         $http = new Http($uri);
         $response_json = $http->GET($params);
 

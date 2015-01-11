@@ -9,7 +9,7 @@
 namespace Jenner\Zebra\Wechat\Client\Card;
 
 
-use Jenner\Zebra\Wechat\WechatUri;
+use Jenner\Zebra\Wechat\WechatConfig;
 
 class BoardingPass extends BaseCard
 {
@@ -20,7 +20,7 @@ class BoardingPass extends BaseCard
      */
     public function checkIn($card)
     {
-        $uri = $this->uri_prefix . WechatUri::CARD_BOARDING_PASS_CHECK_IN;
+        $uri = $this->uri_prefix . WechatConfig::CARD_BOARDING_PASS_CHECK_IN;
         return $this->request_post($uri, $card);
     }
 } 
