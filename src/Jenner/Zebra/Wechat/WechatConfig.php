@@ -139,6 +139,7 @@ class WechatConfig
     const CARD_CREATE = '/create'; //创建卡券
     const CARD_GET = '/get'; //查询卡券详情
     const CARD_UPDATE = '/update'; //更改卡券信息接口
+    const CARD_BATCH_GET = '/batchget'; //更改卡券信息接口
 
     //门店相关
     const CARD_LOCATION_BATCH_ADD = '/location/batchadd'; //批量导入门店信息

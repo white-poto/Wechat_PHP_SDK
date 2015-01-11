@@ -38,4 +38,8 @@ class Card extends BaseCard
         $uri = $this->uri_prefix . WechatConfig::CARD_UPDATE;
         return $this->request_post($uri, $card);
     }
+
+    public function batchGet(){
+        $uri = $this->uri_prefix . WechatConfig::CARD_BATCH_GET;
+    }
 } 

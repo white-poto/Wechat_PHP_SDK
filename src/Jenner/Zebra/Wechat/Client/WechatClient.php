@@ -99,12 +99,11 @@ class WechatClient {
      * @return bool|mixed
      */
     public function request($uri, $post_params=null, $get_params=null, $file_upload=false){
-         $access_token = $this->getAccessToken();
-
+        $access_token = $this->getAccessToken();
         $get_params['access_token'] = $access_token;
         $query_string = http_build_query($get_params);
-        $http = new \Jenner\Zebra\Tools\Http($uri . '?' . $query_string);
         $post_params = json_encode($post_params, JSON_UNESCAPED_UNICODE);
+        $http = new \Jenner\Zebra\Tools\Http($uri . '?' . $query_string);
         $result_json = $http->POST($post_params, $file_upload);
 
         //存在errcode并且errcode不为0时，为错误返回

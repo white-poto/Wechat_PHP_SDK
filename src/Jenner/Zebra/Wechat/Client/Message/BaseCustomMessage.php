@@ -57,7 +57,6 @@ abstract class BaseCustomMessage extends WechatClient
     public function send()
     {
         $params = $this->getParams();
-        \Log::info(json_encode($params));
         return $this->request($this->uri, $params);
     }
 } 
