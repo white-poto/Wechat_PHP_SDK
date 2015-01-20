@@ -20,7 +20,7 @@ class WhiteList extends BaseCard
      */
     public function set($list)
     {
-        $uri = $this->uri_prefix . WechatConfig::CARD_TEST_WHITE_LIST;
+        $uri = $this->card_uri_prefix . WechatConfig::CARD_TEST_WHITE_LIST;
         return $this->request_post($uri, $list);
     }
 } 

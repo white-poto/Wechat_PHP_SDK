@@ -21,7 +21,7 @@ class Code extends BaseCard
      */
     public function consume($code, $card_id)
     {
-        $uri = $this->uri_prefix . WechatConfig::CARD_CODE_CONSUME;
+        $uri = $this->card_uri_prefix . WechatConfig::CARD_CODE_CONSUME;
         return $this->request_post($uri, compact('code', 'card_id'));
     }
 
@@ -33,7 +33,7 @@ class Code extends BaseCard
      */
     public function decrypt($encrypt_code)
     {
-        $uri = $this->uri_prefix . WechatConfig::CARD_CODE_DECRYPT;
+        $uri = $this->card_uri_prefix . WechatConfig::CARD_CODE_DECRYPT;
         return $this->request_post($uri, compact('encrypt_code'));
     }
 
@@ -44,7 +44,7 @@ class Code extends BaseCard
      */
     public function get($code)
     {
-        $uri = $this->uri_prefix . WechatConfig::CARD_CODE_GET;
+        $uri = $this->card_uri_prefix . WechatConfig::CARD_CODE_GET;
         return $this->request_post($uri, compact('code'));
     }
 
@@ -56,7 +56,7 @@ class Code extends BaseCard
      */
     public function batchGet($offset, $count)
     {
-        $uri = $this->uri_prefix . WechatConfig::CARD_CODE_BATCH_GET;
+        $uri = $this->card_uri_prefix . WechatConfig::CARD_CODE_BATCH_GET;
         return $this->request_post($uri, compact('offset', 'count'));
     }
 
@@ -69,7 +69,7 @@ class Code extends BaseCard
      */
     public function update($code, $card_id, $new_code)
     {
-        $uri = $this->uri_prefix . WechatConfig::CARD_CODE_UPDATE;
+        $uri = $this->card_uri_prefix . WechatConfig::CARD_CODE_UPDATE;
         return $this->request_post($uri, compact('code', 'card_id', 'new_code'));
     }
 
@@ -81,7 +81,7 @@ class Code extends BaseCard
      */
     public function unavailable($code, $card_id = null)
     {
-        $uri = $this->uri_prefix . WechatConfig::CARD_CODE_UNAVAILABLE;
+        $uri = $this->card_uri_prefix . WechatConfig::CARD_CODE_UNAVAILABLE;
         $params['code'] = $code;
         if (!is_null($card_id)) $params['card_id'] = $card_id;
         return $this->request_post($uri, $params);

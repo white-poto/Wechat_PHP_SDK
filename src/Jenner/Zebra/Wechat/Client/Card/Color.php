@@ -15,7 +15,7 @@ class Color extends BaseCard
 {
     public function get()
     {
-        $uri = $this->uri_prefix . WechatConfig::CARD_COLOR_GET;
+        $uri = $this->card_uri_prefix . WechatConfig::CARD_COLOR_GET;
         return $this->request_get($uri);
     }
 } 

@@ -20,7 +20,7 @@ class MemberCard extends BaseCard
      */
     public function activate($card)
     {
-        $uri = $this->uri_prefix . WechatConfig::CARD_MEMBER_ACTIVATE;
+        $uri = $this->card_uri_prefix . WechatConfig::CARD_MEMBER_ACTIVATE;
         return $this->request_post($uri, $card);
     }
 
@@ -30,7 +30,7 @@ class MemberCard extends BaseCard
      * @return bool|mixed
      */
     public function updateUser($member_card){
-        $uri = $this->uri_prefix . WechatConfig::CARD_MEMBER_UPDATE;
+        $uri = $this->card_uri_prefix . WechatConfig::CARD_MEMBER_UPDATE;
         return $this->request_post($uri, $member_card);
     }
 } 

@@ -19,7 +19,7 @@ class Card extends BaseCard
      */
     public function create($card)
     {
-        $uri = $this->uri_prefix . WechatConfig::CARD_CREATE;
+        $uri = $this->card_uri_prefix . WechatConfig::CARD_CREATE;
         return $this->request_post($uri, $card);
     }
 
@@ -30,16 +30,17 @@ class Card extends BaseCard
      * @return bool|mixed
      */
     public function get($card_id){
-        $uri = $this->uri_prefix . WechatConfig::CARD_GET;
+        $uri = $this->card_uri_prefix . WechatConfig::CARD_GET;
         return $this->request_post($uri, compact('card_id'));
     }
 
     public function update($card){
-        $uri = $this->uri_prefix . WechatConfig::CARD_UPDATE;
+        $uri = $this->card_uri_prefix . WechatConfig::CARD_UPDATE;
         return $this->request_post($uri, $card);
     }
 
-    public function batchGet(){
-        $uri = $this->uri_prefix . WechatConfig::CARD_BATCH_GET;
+    public function batchGet($offset=0, $count=50){
+        $uri = $this->card_uri_prefix . WechatConfig::CARD_BATCH_GET;
+        return $this->request_post($uri, compact('offset', 'count'));
     }
 } 

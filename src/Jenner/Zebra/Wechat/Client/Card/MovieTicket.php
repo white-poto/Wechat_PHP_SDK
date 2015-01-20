@@ -20,7 +20,7 @@ class MovieTicket extends BaseCard
      */
     public function updateUser($card)
     {
-        $uri = $this->uri_prefix . WechatConfig::CARD_MOVIE_TICKET;
+        $uri = $this->card_uri_prefix . WechatConfig::CARD_MOVIE_TICKET;
         return $this->request_post($uri, $card);
     }
 } 

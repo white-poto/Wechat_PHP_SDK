@@ -20,7 +20,7 @@ class BoardingPass extends BaseCard
      */
     public function checkIn($card)
     {
-        $uri = $this->uri_prefix . WechatConfig::CARD_BOARDING_PASS_CHECK_IN;
+        $uri = $this->card_uri_prefix . WechatConfig::CARD_BOARDING_PASS_CHECK_IN;
         return $this->request_post($uri, $card);
     }
 } 
