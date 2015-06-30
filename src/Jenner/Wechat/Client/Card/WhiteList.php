@@ -6,12 +6,12 @@
  * Time: 下午3:09
  */
 
-namespace Jenner\Zebra\Wechat\Client\Card;
+namespace Jenner\Wechat\Client\Card;
 
 
-use Jenner\Zebra\Wechat\WechatConfig;
+use Jenner\Wechat\WechatConfig;
 
-class WhiteList extends BaseCard
+class WhiteList extends AbstractCard
 {
     /**
      * 设置测试用户白名单

@@ -6,11 +6,10 @@
  * Time: 上午9:48
  */
 
-namespace Jenner\Zebra\Wechat\Client\MenuStructure;
+namespace Jenner\Wechat\Client\MenuStructure;
 
 
-use Jenner\Zebra\Wechat\Exception\WechatException;
-use PHPSQL\Exception\Exception;
+use Jenner\Wechat\Exception\WechatException;
 
 class Button
 {
@@ -19,7 +18,7 @@ class Button
     /**
      * @param $name 菜单名称
      * @param null $type 菜单类型
-     * @throws \Jenner\Zebra\Wechat\Exception\WechatException
+     * @throws \Jenner\Wechat\Exception\WechatException
      */
     public function __construct($name, $type = null)
     {
@@ -37,7 +36,7 @@ class Button
 
     /**
      * @param $key
-     * @throws \Jenner\Zebra\Wechat\Exception\WechatException
+     * @throws \Jenner\Wechat\Exception\WechatException
      */
     public function setKey($key)
     {
@@ -53,7 +52,7 @@ class Button
 
     /**
      * @param $url
-     * @throws \Jenner\Zebra\Wechat\Exception\WechatException
+     * @throws \Jenner\Wechat\Exception\WechatException
      */
     public function setUrl($url)
     {
@@ -69,7 +68,7 @@ class Button
 
     /**
      * @param Button $button
-     * @throws \Jenner\Zebra\Wechat\Exception\WechatException
+     * @throws \Jenner\Wechat\Exception\WechatException
      */
     public function addSubButton(Button $button)
     {

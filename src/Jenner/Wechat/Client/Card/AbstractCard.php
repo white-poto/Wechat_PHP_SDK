@@ -1,22 +1,22 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: Administrator
- * Date: 14-12-15
- * Time: 上午10:15
+ * User: Jenner
+ * Date: 14-12-16
+ * Time: 下午12:13
  */
 
-namespace Jenner\Wechat\Client\Merchant;
+namespace Jenner\Wechat\Client\Card;
 
 
 use Jenner\Wechat\Client\WechatClient;
 use Jenner\Wechat\WechatConfig;
 
-class Merchant extends WechatClient
+abstract class AbstractCard extends WechatClient
 {
     public function __construct()
     {
         parent::__construct();
-        $this->uri_prefix = WechatConfig::MERCHANT_PREFIX;
+        $this->card_uri_prefix = WechatConfig::CARD_PREFIX;
     }
 } 

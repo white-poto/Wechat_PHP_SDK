@@ -6,7 +6,7 @@
  * Time: 下午1:54
  */
 
-namespace Jenner\Zebra\Wechat\Response;
+namespace Jenner\Response;
 
 
 class VoiceResponse extends XmlResponse

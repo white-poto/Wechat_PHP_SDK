@@ -6,12 +6,12 @@
  * Time: 下午3:19
  */
 
-namespace Jenner\Zebra\Wechat\Client\Card;
+namespace Jenner\Wechat\Client\Card;
 
 
-use Jenner\Zebra\Wechat\WechatConfig;
+use Jenner\Wechat\WechatConfig;
 
-class MovieTicket extends BaseCard
+class MovieTicket extends AbstractCard
 {
     /**
      * 领取电影票后通过调用“更新电影票”接口 update 电影信息及用户选座信息。

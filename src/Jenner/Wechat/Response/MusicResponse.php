@@ -6,7 +6,7 @@
  * Time: 上午11:57
  */
 
-namespace Jenner\Zebra\Wechat\Response;
+namespace Jenner\Wechat\Response;
 
 
 class MusicResponse extends XmlResponse

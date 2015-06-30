@@ -6,7 +6,7 @@
  * Time: 上午9:59
  */
 
-namespace Jenner\Zebra\Wechat\Client\MenuStructure;
+namespace Jenner\Wechat\Client\MenuStructure;
 
 
 class EventButton extends Button

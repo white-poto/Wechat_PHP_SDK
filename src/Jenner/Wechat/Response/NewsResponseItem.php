@@ -6,7 +6,7 @@
  * Time: 上午10:44
  */
 
-namespace Jenner\Zebra\Wechat\Response;
+namespace Jenner\Wechat\Response;
 
 
 class NewsResponseItem extends XmlResponse

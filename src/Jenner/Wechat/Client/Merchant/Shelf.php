@@ -8,12 +8,12 @@
  * 货架管理
  */
 
-namespace Jenner\Zebra\Wechat\Client\Merchant;
+namespace Jenner\Wechat\Client\Merchant;
 
-use Jenner\Zebra\Wechat\Client\WechatClient;
-use Jenner\Zebra\Wechat\WechatConfig;
+use Jenner\Wechat\Client\WechatClient;
+use Jenner\Wechat\WechatConfig;
 
-class Shelf extends BaseMerchant
+class Shelf extends AbstractMerchant
 {
 
     /**

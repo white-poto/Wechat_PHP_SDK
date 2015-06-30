@@ -8,11 +8,11 @@
  * 商品管理
  */
 
-namespace Jenner\Zebra\Wechat\Client\Merchant;
+namespace Jenner\Wechat\Client\Merchant;
 
-use Jenner\Zebra\Wechat\WechatConfig;
+use Jenner\Wechat\WechatConfig;
 
-class Good extends BaseMerchant
+class Good extends AbstractMerchant
 {
     /**
      * 新增商品

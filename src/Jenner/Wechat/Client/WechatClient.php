@@ -6,11 +6,11 @@
  * Time: 上午11:05
  */
 
-namespace Jenner\Zebra\Wechat\Client;
+namespace Jenner\Wechat\Client;
 
-use Jenner\Zebra\Wechat\Exception\WechatException;
-use Jenner\Zebra\Wechat\Exception\ResponseErrorException;
-use Jenner\Zebra\Wechat\WechatConfig;
+use Jenner\Wechat\Exception\WechatException;
+use Jenner\Wechat\Exception\ResponseErrorException;
+use Jenner\Wechat\WechatConfig;
 
 
 /**
@@ -26,7 +26,7 @@ use Jenner\Zebra\Wechat\WechatConfig;
  * 如果access_token获取失败，则会抛出ResponseErrorException异常
  *
  * Class WechatClient
- * @package Jenner\Zebra\Wechat\Client
+ * @package Jenner\Wechat\Client
  */
 class WechatClient {
 
@@ -103,7 +103,7 @@ class WechatClient {
         $get_params['access_token'] = $access_token;
         $query_string = http_build_query($get_params);
         $post_params = json_encode($post_params, JSON_UNESCAPED_UNICODE);
-        $http = new \Jenner\Zebra\Tools\Http($uri . '?' . $query_string);
+        $http = new \Jenner\Tools\Http($uri . '?' . $query_string);
         $result_json = $http->POST($post_params, $file_upload);
 
         //存在errcode并且errcode不为0时，为错误返回
@@ -128,7 +128,7 @@ class WechatClient {
             'appid' => WECHAT_APP_ID,
             'secret' => WECHAT_SECRET,
         ];
-        $http = new \Jenner\Zebra\Tools\Http($uri);
+        $http = new \Jenner\Tools\Http($uri);
         $response_json = $http->GET($params);
         $this->checkResponse($response_json);
         $result = json_decode($response_json, true);
@@ -164,7 +164,7 @@ class WechatClient {
      * 检查微信响应是否出错，如果出错，抛出异常
      * @param $response_json
      * @return mixed
-     * @throws \Jenner\Zebra\Wechat\Exception\ResponseErrorException
+     * @throws \Jenner\Wechat\Exception\ResponseErrorException
      */
     public function checkResponse($response_json){
         $response = json_decode($response_json, true);

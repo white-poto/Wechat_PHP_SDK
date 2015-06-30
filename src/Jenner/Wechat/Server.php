@@ -6,11 +6,11 @@
  * Time: 下午5:52
  */
 
-namespace Jenner\Zebra\Wechat;
+namespace Jenner\Wechat;
 
-use Jenner\Zebra\Wechat\Exception\WechatException;
-use Jenner\Zebra\Wechat\Request\XmlRequest;
-use Jenner\Zebra\Wechat\Response\XmlResponse;
+use Jenner\Wechat\Exception\WechatException;
+use Jenner\Wechat\Request\XmlRequest;
+use Jenner\Wechat\Response\XmlResponse;
 
 
 /**
@@ -59,7 +59,7 @@ use Jenner\Zebra\Wechat\Response\XmlResponse;
  * unknown_message 未知消息推送
  *
  * Class WechatServer
- * @package Jenner\Zebra\Wechat
+ * @package Jenner\Wechat
  */
 class WechatServer
 {

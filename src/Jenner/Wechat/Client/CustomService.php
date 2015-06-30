@@ -6,15 +6,15 @@
  * Time: 下午2:45
  */
 
-namespace Jenner\Zebra\Wechat\Client;
+namespace Jenner\Wechat\Client;
 
-use Jenner\Zebra\Wechat\Exception\WechatException;
-use Jenner\Zebra\Wechat\WechatConfig;
+use Jenner\Wechat\Exception\WechatException;
+use Jenner\Wechat\WechatConfig;
 
 /**
  * 客服管理
  * Class CustomService
- * @package Jenner\Zebra\Wechat\Client
+ * @package Jenner\Wechat\Client
  */
 class CustomService extends WechatClient
 {
@@ -99,7 +99,7 @@ class CustomService extends WechatClient
      * @param $open_id 普通用户的标识，对当前公众号唯一
      * @param $page_size 每页大小，每页最多拉取1000条
      * @param $page_index 查询第几页，从1开始
-     * @throws \Jenner\Zebra\Wechat\Exception\WechatException
+     * @throws \Jenner\Wechat\Exception\WechatException
      * @return bool|mixed
      */
     public function getRecord($start_time, $end_time, $open_id, $page_size, $page_index){

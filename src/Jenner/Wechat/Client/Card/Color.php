@@ -6,12 +6,12 @@
  * Time: 下午12:26
  */
 
-namespace Jenner\Zebra\Wechat\Client\Card;
+namespace Jenner\Wechat\Client\Card;
 
 
-use Jenner\Zebra\Wechat\WechatConfig;
+use Jenner\Wechat\WechatConfig;
 
-class Color extends BaseCard
+class Color extends AbstractCard
 {
     public function get()
     {

@@ -6,7 +6,7 @@
  * Time: 下午4:46
  */
 
-namespace Jenner\Zebra\Wechat\Exception;
+namespace Jenner\Wechat\Exception;
 
 
 class WechatException extends \Exception {

@@ -8,7 +8,7 @@
  * 微信响应接口
  */
 
-namespace Jenner\Zebra\Wechat\Response;
+namespace Jenner\Response;
 
 
 /**

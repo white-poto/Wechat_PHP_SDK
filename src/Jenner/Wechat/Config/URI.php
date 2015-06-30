@@ -8,7 +8,7 @@
  * 微信URL配置类
  */
 
-namespace Jenner\Zebra\Wechat;
+namespace Jenner\Wechat;
 
 
 class WechatConfig

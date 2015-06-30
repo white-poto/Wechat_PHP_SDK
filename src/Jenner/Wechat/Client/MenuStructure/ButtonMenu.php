@@ -6,10 +6,10 @@
  * Time: 上午10:03
  */
 
-namespace Jenner\Zebra\Wechat\Client\MenuStructure;
+namespace Jenner\Wechat\Client\MenuStructure;
 
 
-use Jenner\Zebra\Wechat\Exception\WechatException;
+use Jenner\Wechat\Exception\WechatException;
 
 class ButtonMenu
 {

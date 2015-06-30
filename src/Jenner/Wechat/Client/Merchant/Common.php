@@ -6,12 +6,12 @@
  * Time: 上午11:14
  */
 
-namespace Jenner\Zebra\Wechat\Client\Merchant;
+namespace Jenner\Wechat\Client\Merchant;
 
 
-use Jenner\Zebra\Wechat\WechatConfig;
+use Jenner\Wechat\WechatConfig;
 
-class Common extends BaseMerchant {
+class Common extends AbstractMerchant {
     public function uploadImage($filename_with_full_path){
         $uri = $this->merchant_uri_prefix . WechatConfig::MERCHANT_COMMON_UPLOAD_IMG;
         $file_name = basename($filename_with_full_path);

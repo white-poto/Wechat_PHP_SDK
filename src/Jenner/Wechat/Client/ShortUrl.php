@@ -6,9 +6,9 @@
  * Time: 下午12:01
  */
 
-namespace Jenner\Zebra\Wechat\Client;
+namespace Jenner\Wechat\Client;
 
-use Jenner\Zebra\Wechat\WechatConfig;
+use Jenner\Wechat\WechatConfig;
 
 class ShortUrl extends WechatClient
 {

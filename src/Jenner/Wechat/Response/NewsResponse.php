@@ -6,7 +6,7 @@
  * Time: 下午12:15
  */
 
-namespace Jenner\Zebra\Wechat\Response;
+namespace Jenner\Wechat\Response;
 
 
 /**

@@ -6,12 +6,12 @@
  * Time: 上午11:51
  */
 
-namespace Jenner\Zebra\Wechat\Client;
+namespace Jenner\Wechat\Client;
 
 
-use Jenner\Zebra\Tools\Http;
-use Jenner\Zebra\Wechat\Exception\WechatException;
-use Jenner\Zebra\Wechat\WechatConfig;
+use Jenner\Tools\Http;
+use Jenner\Wechat\Exception\WechatException;
+use Jenner\Wechat\WechatConfig;
 
 class QrCode extends WechatClient
 {
@@ -54,7 +54,7 @@ class QrCode extends WechatClient
      * 下载二维码
      * @param $ticket
      * @return mixed
-     * @throws \Jenner\Zebra\Wechat\Exception\WechatException
+     * @throws \Jenner\Wechat\Exception\WechatException
      */
     public function download($ticket)
     {

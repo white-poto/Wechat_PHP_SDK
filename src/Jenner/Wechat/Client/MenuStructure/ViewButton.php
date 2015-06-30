@@ -6,7 +6,7 @@
  * Time: 上午9:57
  */
 
-namespace Jenner\Zebra\Wechat\Client\MenuStructure;
+namespace Jenner\Wechat\Client\MenuStructure;
 
 
 class ViewButton extends Button

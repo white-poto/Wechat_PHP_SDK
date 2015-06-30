@@ -6,10 +6,10 @@
  * Time: 下午1:34
  */
 
-namespace Jenner\Zebra\Wechat\Client;
+namespace Jenner\Wechat\Client;
 
 
-use Jenner\Zebra\Wechat\WechatConfig;
+use Jenner\Wechat\WechatConfig;
 
 class Menu extends WechatClient
 {

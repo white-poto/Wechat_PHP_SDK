@@ -6,11 +6,11 @@
  * Time: 下午12:19
  */
 
-namespace Jenner\Zebra\Wechat\Client\Card;
+namespace Jenner\Wechat\Client\Card;
 
-use Jenner\Zebra\Wechat\WechatConfig;
+use Jenner\Wechat\WechatConfig;
 
-class Card extends BaseCard
+class Card extends AbstractCard
 {
     /**
      * 创建卡券

@@ -6,12 +6,12 @@
  * Time: 上午11:26
  */
 
-namespace Jenner\Zebra\Wechat\Client\Merchant;
+namespace Jenner\Wechat\Client\Merchant;
 
 
-use Jenner\Zebra\Wechat\WechatConfig;
+use Jenner\Wechat\WechatConfig;
 
-class Order extends BaseMerchant
+class Order extends AbstractMerchant
 {
     /**
      * 根据订单ID获取订单信息

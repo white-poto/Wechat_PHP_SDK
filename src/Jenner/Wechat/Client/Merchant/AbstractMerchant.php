@@ -12,11 +12,13 @@ namespace Jenner\Wechat\Client\Merchant;
 use Jenner\Wechat\Client\WechatClient;
 use Jenner\Wechat\WechatConfig;
 
-class Merchant extends WechatClient
+class AbstractMerchant extends WechatClient
 {
+    protected $merchant_uri_prefix;
+
     public function __construct()
     {
         parent::__construct();
-        $this->uri_prefix = WechatConfig::MERCHANT_PREFIX;
+        $this->merchant_uri_prefix = WechatConfig::MERCHANT_PREFIX;
     }
 } 

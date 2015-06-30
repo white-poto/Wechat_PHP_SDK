@@ -6,12 +6,12 @@
  * Time: 下午3:24
  */
 
-namespace Jenner\Zebra\Wechat\Client\Card;
+namespace Jenner\Wechat\Client\Card;
 
 
-use Jenner\Zebra\Wechat\WechatConfig;
+use Jenner\Wechat\WechatConfig;
 
-class LuckyMoney extends BaseCard
+class LuckyMoney extends AbstractCard
 {
     /**
      * 更新红包金额

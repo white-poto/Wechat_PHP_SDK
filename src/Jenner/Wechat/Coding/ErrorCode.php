@@ -6,7 +6,7 @@
  * Time: 下午2:43
  */
 
-namespace Jenner\Zebra\Wechat\Coding;
+namespace Jenner\Wechat\Coding;
 
 
 /**

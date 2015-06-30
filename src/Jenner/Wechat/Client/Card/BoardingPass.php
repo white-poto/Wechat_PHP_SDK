@@ -6,12 +6,12 @@
  * Time: 下午3:22
  */
 
-namespace Jenner\Zebra\Wechat\Client\Card;
+namespace Jenner\Wechat\Client\Card;
 
 
-use Jenner\Zebra\Wechat\WechatConfig;
+use Jenner\Wechat\WechatConfig;
 
-class BoardingPass extends BaseCard
+class BoardingPass extends AbstractCard
 {
     /**
      * 在线选座

@@ -6,7 +6,7 @@
  * Time: 下午2:44
  */
 
-namespace Jenner\Zebra\Wechat\Coding;
+namespace Jenner\Wechat\Coding;
 
 /**
  * PKCS7Encoder class

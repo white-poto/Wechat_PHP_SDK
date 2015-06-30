@@ -6,11 +6,11 @@
  * Time: 下午1:36
  */
 
-namespace Jenner\Zebra\Wechat\Client;
+namespace Jenner\Wechat\Client;
 
 
-use Jenner\Zebra\Wechat\Exception\WechatException;
-use Jenner\Zebra\Wechat\WechatConfig;
+use Jenner\Wechat\Exception\WechatException;
+use Jenner\Wechat\WechatConfig;
 
 class Media extends WechatClient
 {

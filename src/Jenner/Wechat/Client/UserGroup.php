@@ -6,15 +6,15 @@
  * Time: 下午2:25
  */
 
-namespace Jenner\Zebra\Wechat\Client;
+namespace Jenner\Wechat\Client;
 
 
-use Jenner\Zebra\Wechat\WechatConfig;
+use Jenner\Wechat\WechatConfig;
 
 /**
  * 用户分组管理
  * Class UserGroup
- * @package Jenner\Zebra\Wechat\Client
+ * @package Jenner\Wechat\Client
  */
 class UserGroup extends WechatClient
 {

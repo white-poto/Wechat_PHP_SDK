@@ -6,7 +6,7 @@
  * Time: 上午10:32
  */
 
-namespace Jenner\Zebra\Wechat\Exception;
+namespace Jenner\Wechat\Exception;
 
 
 class ResponseErrorException extends WechatException {

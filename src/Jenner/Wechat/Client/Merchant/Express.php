@@ -6,12 +6,12 @@
  * Time: 上午11:00
  */
 
-namespace Jenner\Zebra\Wechat\Client\Merchant;
+namespace Jenner\Wechat\Client\Merchant;
 
 
-use Jenner\Zebra\Wechat\WechatConfig;
+use Jenner\Wechat\WechatConfig;
 
-class Express extends BaseMerchant
+class Express extends AbstractMerchant
 {
     /**
      * 增加邮费模板
