@@ -1,0 +1,102 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "This file is @generated automatically"
+    ],
+    "hash": "0527fd011fa5d183f1a458882cb8af21",
+    "packages": [
+        {
+            "name": "jenner/tools",
+            "version": "v1.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/huyanping/Zebra-Tools.git",
+                "reference": "bfd0533f8071eaf12778f3e1a47a3bab9dfd7e09"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/huyanping/Zebra-Tools/zipball/bfd0533f8071eaf12778f3e1a47a3bab9dfd7e09",
+                "reference": "bfd0533f8071eaf12778f3e1a47a3bab9dfd7e09",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Jenner\\Zebra\\Tools": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jenner",
+                    "email": "hypxm@qq.com"
+                }
+            ],
+            "description": "common static functions",
+            "keywords": [
+                "tools",
+                "utils"
+            ],
+            "time": "2014-11-17 08:15:54"
+        },
+        {
+            "name": "jenner/wechat",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "git@github.com:huyanping/Zebra-Wechat.git",
+                "reference": "cde2c63f90c976dd3be4611cabb1948448708dc9"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/huyanping/Zebra-Wechat/zipball/cde2c63f90c976dd3be4611cabb1948448708dc9",
+                "reference": "cde2c63f90c976dd3be4611cabb1948448708dc9",
+                "shasum": ""
+            },
+            "require": {
+                "jenner/tools": "1.2.0",
+                "php": ">=5.3.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Jenner\\Zebra\\Wechat": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jenner",
+                    "email": "hypxm@qq.com"
+                }
+            ],
+            "description": "wechat api client",
+            "keywords": [
+                "api",
+                "wechat"
+            ],
+            "time": "2014-12-14 04:06:52"
+        }
+    ],
+    "packages-dev": [],
+    "aliases": [],
+    "minimum-stability": "stable",
+    "stability-flags": {
+        "jenner/wechat": 20
+    },
+    "prefer-stable": false,
+    "platform": {
+        "php": ">=5.3.0"
+    },
+    "platform-dev": []
+}
