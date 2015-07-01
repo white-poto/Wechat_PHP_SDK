@@ -11,7 +11,7 @@ namespace Jenner\Wechat\Client;
 
 use Jenner\Tools\Http;
 use Jenner\Wechat\Exception\WechatException;
-use Jenner\Wechat\WechatConfig;
+use Jenner\Wechat\Config\URI;
 
 class QrCode extends WechatClient
 {
@@ -24,7 +24,7 @@ class QrCode extends WechatClient
      */
     public function create($expire_seconds, $scene_id)
     {
-        $uri = $this->uri_prefix . WechatConfig::QR_CODE_CREATE;
+        $uri = $this->uri_prefix . URI::QR_CODE_CREATE;
         $params = [
             'expire_seconds' => $expire_seconds,
             'action_name' => 'QR_LIMIT_SCENE',
@@ -41,7 +41,7 @@ class QrCode extends WechatClient
      */
     public function createTemp($expire_seconds, $scene_id)
     {
-        $uri = $this->uri_prefix . WechatConfig::QR_CODE_CREATE;
+        $uri = $this->uri_prefix . URI::QR_CODE_CREATE;
         $params = [
             'expire_seconds' => $expire_seconds,
             'action_name' => 'QR_SCENE',
@@ -58,7 +58,7 @@ class QrCode extends WechatClient
      */
     public function download($ticket)
     {
-        $uri = $this->uri_prefix . WechatConfig::QR_CODE_DOWNLOAD;
+        $uri = $this->uri_prefix . URI::QR_CODE_DOWNLOAD;
         $ticket = urlencode($ticket);
         $http = new Http($uri);
         $image = $http->GET(compact('ticket'));

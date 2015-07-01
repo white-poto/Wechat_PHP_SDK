@@ -8,10 +8,10 @@
  * 微信URL配置类
  */
 
-namespace Jenner\Wechat;
+namespace Jenner\Wechat\Config;
 
 
-class WechatConfig
+class URI
 {
 
     const COMMON_PREFIX = 'https://api.weixin.qq.com/cgi-bin'; //通用API前缀

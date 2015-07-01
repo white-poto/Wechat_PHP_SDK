@@ -9,7 +9,7 @@
 namespace Jenner\Wechat\Client\Card;
 
 
-use Jenner\Wechat\WechatConfig;
+use Jenner\Wechat\Config\URI;
 
 class MemberCard extends AbstractCard
 {
@@ -20,7 +20,7 @@ class MemberCard extends AbstractCard
      */
     public function activate($card)
     {
-        $uri = $this->card_uri_prefix . WechatConfig::CARD_MEMBER_ACTIVATE;
+        $uri = $this->card_uri_prefix . URI::CARD_MEMBER_ACTIVATE;
         return $this->request_post($uri, $card);
     }
 
@@ -31,7 +31,7 @@ class MemberCard extends AbstractCard
      */
     public function updateUser($member_card)
     {
-        $uri = $this->card_uri_prefix . WechatConfig::CARD_MEMBER_UPDATE;
+        $uri = $this->card_uri_prefix . URI::CARD_MEMBER_UPDATE;
         return $this->request_post($uri, $member_card);
     }
 } 

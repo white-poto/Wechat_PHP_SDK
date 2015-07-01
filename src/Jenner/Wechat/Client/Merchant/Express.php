@@ -9,7 +9,7 @@
 namespace Jenner\Wechat\Client\Merchant;
 
 
-use Jenner\Wechat\WechatConfig;
+use Jenner\Wechat\Config\URI;
 
 class Express extends AbstractMerchant
 {
@@ -20,7 +20,7 @@ class Express extends AbstractMerchant
      */
     public function add($express)
     {
-        $uri = $this->merchant_uri_prefix . WechatConfig::MERCHANT_EXPRESS_ADD;
+        $uri = $this->merchant_uri_prefix . URI::MERCHANT_EXPRESS_ADD;
         return $this->request_post($uri, $express);
     }
 
@@ -31,7 +31,7 @@ class Express extends AbstractMerchant
      */
     public function del($template_id)
     {
-        $uri = $this->merchant_uri_prefix . WechatConfig::MERCHANT_EXPRESS_DEL;
+        $uri = $this->merchant_uri_prefix . URI::MERCHANT_EXPRESS_DEL;
         return $this->request_post($uri, compact('template_id'));
     }
 

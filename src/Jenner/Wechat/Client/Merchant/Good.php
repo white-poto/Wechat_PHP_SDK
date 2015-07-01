@@ -10,7 +10,7 @@
 
 namespace Jenner\Wechat\Client\Merchant;
 
-use Jenner\Wechat\WechatConfig;
+use Jenner\Wechat\Config\URI;
 
 class Good extends AbstractMerchant
 {
@@ -21,7 +21,7 @@ class Good extends AbstractMerchant
      */
     public function create($product)
     {
-        $uri = $this->merchant_uri_prefix . WechatConfig::MERCHANT_GOOD_CREATE;
+        $uri = $this->merchant_uri_prefix . URI::MERCHANT_GOOD_CREATE;
         return $this->request_post($uri, $product);
     }
 
@@ -32,7 +32,7 @@ class Good extends AbstractMerchant
      */
     public function del($product_id)
     {
-        $uri = $this->merchant_uri_prefix . WechatConfig::MERCHANT_GOOD_DEL;
+        $uri = $this->merchant_uri_prefix . URI::MERCHANT_GOOD_DEL;
         return $this->request_post($uri, ['product_id' => $product_id]);
     }
 
@@ -43,7 +43,7 @@ class Good extends AbstractMerchant
      */
     public function update($product)
     {
-        $uri = $this->merchant_uri_prefix . WechatConfig::MERCHANT_GOOD_UPDATE;
+        $uri = $this->merchant_uri_prefix . URI::MERCHANT_GOOD_UPDATE;
         return $this->request_post($uri, $product);
     }
 
@@ -54,7 +54,7 @@ class Good extends AbstractMerchant
      */
     public function get($product_id)
     {
-        $uri = $this->merchant_uri_prefix . WechatConfig::MERCHANT_GOOD_GET;
+        $uri = $this->merchant_uri_prefix . URI::MERCHANT_GOOD_GET;
         return $this->request_post($uri, ['product_id' => $product_id]);
     }
 
@@ -65,7 +65,7 @@ class Good extends AbstractMerchant
      */
     public function getByStatus($status)
     {
-        $uri = $this->merchant_uri_prefix . WechatConfig::MERCHANT_GOOD_GET_BY_STATUS;
+        $uri = $this->merchant_uri_prefix . URI::MERCHANT_GOOD_GET_BY_STATUS;
         return $this->request_post($uri, ['status' => $status]);
     }
 
@@ -77,7 +77,7 @@ class Good extends AbstractMerchant
      */
     public function modStatus($product_id, $status)
     {
-        $uri = $this->merchant_uri_prefix . WechatConfig::MERCHANT_GOOD_MOD_STATUS;
+        $uri = $this->merchant_uri_prefix . URI::MERCHANT_GOOD_MOD_STATUS;
         return $this->request_post($uri, ['product_id' => $product_id, 'status' => $status]);
     }
 

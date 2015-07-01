@@ -9,19 +9,19 @@
 namespace Jenner\Wechat\Client\Card;
 
 
-use Jenner\Wechat\WechatConfig;
+use Jenner\Wechat\Config\URI;
 
 class Location extends AbstractCard
 {
     public function batchAdd($location)
     {
-        $uri = $this->card_uri_prefix . WechatConfig::CARD_LOCATION_BATCH_ADD;
+        $uri = $this->card_uri_prefix . URI::CARD_LOCATION_BATCH_ADD;
         return $this->request_post($uri, $location);
     }
 
     public function batchGet($offset, $count)
     {
-        $uri = $this->card_uri_prefix . WechatConfig::CARD_LOCATION_BATCH_GET;
+        $uri = $this->card_uri_prefix . URI::CARD_LOCATION_BATCH_GET;
         return $this->request_post($uri, compact('offset', 'count'));
     }
 } 

@@ -8,8 +8,7 @@
 
 namespace Jenner\Wechat\Client;
 
-
-use Jenner\Wechat\WechatConfig;
+use Jenner\Wechat\Config\URI;
 
 /**
  * 用户分组管理
@@ -25,7 +24,7 @@ class UserGroup extends WechatClient
      */
     public function create($group)
     {
-        $uri = $this->uri_prefix . WechatConfig::USER_GROUP_CREATE;
+        $uri = $this->uri_prefix . URI::USER_GROUP_CREATE;
         return $this->request_post($uri, $group);
     }
 
@@ -35,7 +34,7 @@ class UserGroup extends WechatClient
      */
     public function get()
     {
-        $uri = $this->uri_prefix . WechatConfig::USER_GROUP_GET;
+        $uri = $this->uri_prefix . URI::USER_GROUP_GET;
         return $this->request_get($uri);
     }
 
@@ -46,7 +45,7 @@ class UserGroup extends WechatClient
      */
     public function getByOpenId($open_id)
     {
-        $uri = $this->uri_prefix . WechatConfig::USER_GROUP_GET_BY_OPEN_ID;
+        $uri = $this->uri_prefix . URI::USER_GROUP_GET_BY_OPEN_ID;
         return $this->request_post($uri, ['openid' => $open_id]);
     }
 
@@ -58,7 +57,7 @@ class UserGroup extends WechatClient
      */
     public function update($group_id, $name)
     {
-        $uri = $this->uri_prefix . WechatConfig::USER_GROUP_UPDATE;
+        $uri = $this->uri_prefix . URI::USER_GROUP_UPDATE;
         $params = ['group' => ['id' => $group_id, 'name' => $name]];
         return $this->request_post($uri, $params);
     }
@@ -71,7 +70,7 @@ class UserGroup extends WechatClient
      */
     public function userGroupUpdate($open_id, $to_group_id)
     {
-        $uri = $this->uri_prefix . WechatConfig::USER_GROUP_MEMBER_UPDATE;
+        $uri = $this->uri_prefix . URI::USER_GROUP_MEMBER_UPDATE;
         $params = ['openid' => $open_id, 'to_group_id' => $to_group_id];
         return $this->request_post($uri, $params);
     }

@@ -10,8 +10,7 @@
 
 namespace Jenner\Wechat\Client\Merchant;
 
-use Jenner\Wechat\Client\WechatClient;
-use Jenner\Wechat\WechatConfig;
+use Jenner\Wechat\Config\URI;
 
 class Shelf extends AbstractMerchant
 {
@@ -23,7 +22,7 @@ class Shelf extends AbstractMerchant
      */
     public function add($shelf)
     {
-        $uri = $this->merchant_uri_prefix . WechatConfig::MERCHANT_SHELF_ADD;
+        $uri = $this->merchant_uri_prefix . URI::MERCHANT_SHELF_ADD;
         return $this->request_post($uri, $shelf);
     }
 
@@ -34,7 +33,7 @@ class Shelf extends AbstractMerchant
      */
     public function del($shelf_id)
     {
-        $uri = $this->merchant_uri_prefix . WechatConfig::MERCHANT_SHELF_DEL;
+        $uri = $this->merchant_uri_prefix . URI::MERCHANT_SHELF_DEL;
         return $this->request_post($uri, compact('shelf_id'));
     }
 
@@ -45,7 +44,7 @@ class Shelf extends AbstractMerchant
      */
     public function update($shelf)
     {
-        $uri = $this->merchant_uri_prefix . WechatConfig::MERCHANT_SHELF_MOD;
+        $uri = $this->merchant_uri_prefix . URI::MERCHANT_SHELF_MOD;
         return $this->request_post($uri, $shelf);
     }
 
@@ -55,7 +54,7 @@ class Shelf extends AbstractMerchant
      */
     public function getAll()
     {
-        $uri = $this->merchant_uri_prefix . WechatConfig::MERCHANT_SHELF_GET_ALL;
+        $uri = $this->merchant_uri_prefix . URI::MERCHANT_SHELF_GET_ALL;
         return $this->request_get($uri);
     }
 
@@ -66,7 +65,7 @@ class Shelf extends AbstractMerchant
      */
     public function getById($shelf_id)
     {
-        $uri = $this->merchant_uri_prefix . WechatConfig::MERCHANT_SHELF_GET_BY_ID;
+        $uri = $this->merchant_uri_prefix . URI::MERCHANT_SHELF_GET_BY_ID;
         return $this->request_post($uri, compact('shelf_id'));
     }
 } 

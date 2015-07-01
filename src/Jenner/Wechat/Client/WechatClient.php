@@ -10,7 +10,7 @@ namespace Jenner\Wechat\Client;
 
 use Jenner\Wechat\Exception\WechatException;
 use Jenner\Wechat\Exception\ResponseErrorException;
-use Jenner\Wechat\WechatConfig;
+use Jenner\Wechat\Config\URI;
 
 
 /**
@@ -54,7 +54,7 @@ class WechatClient
             throw new WechatException('const WECHAT_SECRET not defined');
         }
 
-        $this->uri_prefix = WechatConfig::COMMON_PREFIX;
+        $this->uri_prefix = URI::COMMON_PREFIX;
     }
 
     /**
@@ -130,7 +130,7 @@ class WechatClient
             return $cache['access_token'];
         }
 
-        $uri = $this->uri_prefix . WechatConfig::AUTH_TOKEN;
+        $uri = $this->uri_prefix . URI::AUTH_TOKEN;
         $params = [
             'grant_type' => 'client_credential',
             'appid' => WECHAT_APP_ID,

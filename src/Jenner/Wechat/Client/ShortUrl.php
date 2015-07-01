@@ -8,7 +8,7 @@
 
 namespace Jenner\Wechat\Client;
 
-use Jenner\Wechat\WechatConfig;
+use Jenner\Wechat\Config\URI;
 
 class ShortUrl extends WechatClient
 {
@@ -19,7 +19,7 @@ class ShortUrl extends WechatClient
      */
     public function get($long_url)
     {
-        $uri = $this->uri_prefix . WechatConfig::SHORT_URL;
+        $uri = $this->uri_prefix . URI::SHORT_URL;
         $param = [
             'action' => 'long2short',
             'long_url' => $long_url,

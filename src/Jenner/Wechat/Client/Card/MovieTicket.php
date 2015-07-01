@@ -9,7 +9,7 @@
 namespace Jenner\Wechat\Client\Card;
 
 
-use Jenner\Wechat\WechatConfig;
+use Jenner\Wechat\Config\URI;
 
 class MovieTicket extends AbstractCard
 {
@@ -20,7 +20,7 @@ class MovieTicket extends AbstractCard
      */
     public function updateUser($card)
     {
-        $uri = $this->card_uri_prefix . WechatConfig::CARD_MOVIE_TICKET;
+        $uri = $this->card_uri_prefix . URI::CARD_MOVIE_TICKET;
         return $this->request_post($uri, $card);
     }
 } 

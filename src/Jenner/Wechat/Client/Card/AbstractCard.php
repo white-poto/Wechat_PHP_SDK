@@ -10,13 +10,13 @@ namespace Jenner\Wechat\Client\Card;
 
 
 use Jenner\Wechat\Client\WechatClient;
-use Jenner\Wechat\WechatConfig;
+use Jenner\Wechat\Config\URI;
 
 abstract class AbstractCard extends WechatClient
 {
     public function __construct()
     {
         parent::__construct();
-        $this->card_uri_prefix = WechatConfig::CARD_PREFIX;
+        $this->card_uri_prefix = URI::CARD_PREFIX;
     }
 } 

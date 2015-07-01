@@ -8,7 +8,7 @@
 
 namespace Jenner\Wechat\Client\Card;
 
-use Jenner\Wechat\WechatConfig;
+use Jenner\Wechat\Config\URI;
 
 class Card extends AbstractCard
 {
@@ -19,7 +19,7 @@ class Card extends AbstractCard
      */
     public function create($card)
     {
-        $uri = $this->card_uri_prefix . WechatConfig::CARD_CREATE;
+        $uri = $this->card_uri_prefix . URI::CARD_CREATE;
         return $this->request_post($uri, $card);
     }
 
@@ -31,19 +31,19 @@ class Card extends AbstractCard
      */
     public function get($card_id)
     {
-        $uri = $this->card_uri_prefix . WechatConfig::CARD_GET;
+        $uri = $this->card_uri_prefix . URI::CARD_GET;
         return $this->request_post($uri, compact('card_id'));
     }
 
     public function update($card)
     {
-        $uri = $this->card_uri_prefix . WechatConfig::CARD_UPDATE;
+        $uri = $this->card_uri_prefix . URI::CARD_UPDATE;
         return $this->request_post($uri, $card);
     }
 
     public function batchGet($offset = 0, $count = 50)
     {
-        $uri = $this->card_uri_prefix . WechatConfig::CARD_BATCH_GET;
+        $uri = $this->card_uri_prefix . URI::CARD_BATCH_GET;
         return $this->request_post($uri, compact('offset', 'count'));
     }
 } 

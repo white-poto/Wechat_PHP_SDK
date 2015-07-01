@@ -9,7 +9,7 @@
 namespace Jenner\Wechat\Client;
 
 
-use Jenner\Wechat\WechatConfig;
+use Jenner\Wechat\Config\URI;
 
 class JsTicket extends WechatClient
 {
@@ -63,7 +63,7 @@ class JsTicket extends WechatClient
     public function getTicket($type)
     {
         $params = ['type' => $type];
-        $uri = $this->uri_prefix . WechatConfig::TICKET_GET_TICKET;
+        $uri = $this->uri_prefix . URI::TICKET_GET_TICKET;
         return $this->request_get($uri, $params);
     }
 } 

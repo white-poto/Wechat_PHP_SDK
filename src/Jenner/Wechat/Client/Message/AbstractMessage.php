@@ -11,7 +11,7 @@
 namespace Jenner\Wechat\Client\Message;
 
 use Jenner\Wechat\Client\WechatClient;
-use Jenner\Wechat\WechatConfig;
+use Jenner\Wechat\Config\URI;
 
 
 /**
@@ -38,7 +38,7 @@ abstract class AbstractMessage extends WechatClient
     {
         parent::__construct();
         $this->params['touser'] = $to_user;
-        $this->uri = $this->uri_prefix . WechatConfig::MESSAGE_SEND;
+        $this->uri = $this->uri_prefix . URI::MESSAGE_SEND;
     }
 
     /**

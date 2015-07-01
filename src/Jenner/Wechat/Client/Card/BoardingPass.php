@@ -9,7 +9,7 @@
 namespace Jenner\Wechat\Client\Card;
 
 
-use Jenner\Wechat\WechatConfig;
+use Jenner\Wechat\Config\URI;
 
 class BoardingPass extends AbstractCard
 {
@@ -20,7 +20,7 @@ class BoardingPass extends AbstractCard
      */
     public function checkIn($card)
     {
-        $uri = $this->card_uri_prefix . WechatConfig::CARD_BOARDING_PASS_CHECK_IN;
+        $uri = $this->card_uri_prefix . URI::CARD_BOARDING_PASS_CHECK_IN;
         return $this->request_post($uri, $card);
     }
 } 
