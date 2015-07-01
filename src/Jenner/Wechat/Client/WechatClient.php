@@ -144,7 +144,7 @@ class WechatClient
         $cache['access_token'] = $result['access_token'];
         $cache['expires_in'] = $result['expires_in'];
         $cache['create_time'] = time();
-        if (!empty(self::$get_access_token_callback) && is_callable(self::$get_access_token_callback)) {
+        if (!empty(self::$set_access_token_callback) && is_callable(self::$set_access_token_callback)) {
             call_user_func(self::$set_access_token_callback, $cache);
         }
 
