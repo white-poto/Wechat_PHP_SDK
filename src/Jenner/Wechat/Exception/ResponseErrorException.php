@@ -9,6 +9,7 @@
 namespace Jenner\Wechat\Exception;
 
 
-class ResponseErrorException extends WechatException {
+class ResponseErrorException extends WechatException
+{
 
 } 

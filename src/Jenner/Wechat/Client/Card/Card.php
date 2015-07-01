@@ -29,17 +29,20 @@ class Card extends AbstractCard
      * @param $card_id
      * @return bool|mixed
      */
-    public function get($card_id){
+    public function get($card_id)
+    {
         $uri = $this->card_uri_prefix . WechatConfig::CARD_GET;
         return $this->request_post($uri, compact('card_id'));
     }
 
-    public function update($card){
+    public function update($card)
+    {
         $uri = $this->card_uri_prefix . WechatConfig::CARD_UPDATE;
         return $this->request_post($uri, $card);
     }
 
-    public function batchGet($offset=0, $count=50){
+    public function batchGet($offset = 0, $count = 50)
+    {
         $uri = $this->card_uri_prefix . WechatConfig::CARD_BATCH_GET;
         return $this->request_post($uri, compact('offset', 'count'));
     }

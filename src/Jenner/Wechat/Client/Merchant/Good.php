@@ -81,5 +81,5 @@ class Good extends AbstractMerchant
         return $this->request_post($uri, ['product_id' => $product_id, 'status' => $status]);
     }
 
-    
+
 } 

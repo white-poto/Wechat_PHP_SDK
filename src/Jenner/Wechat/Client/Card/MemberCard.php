@@ -29,7 +29,8 @@ class MemberCard extends AbstractCard
      * @param $member_card
      * @return bool|mixed
      */
-    public function updateUser($member_card){
+    public function updateUser($member_card)
+    {
         $uri = $this->card_uri_prefix . WechatConfig::CARD_MEMBER_UPDATE;
         return $this->request_post($uri, $member_card);
     }

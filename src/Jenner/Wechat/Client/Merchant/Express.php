@@ -29,7 +29,8 @@ class Express extends AbstractMerchant
      * @param $template_id
      * @return bool|mixed
      */
-    public function del($template_id){
+    public function del($template_id)
+    {
         $uri = $this->merchant_uri_prefix . WechatConfig::MERCHANT_EXPRESS_DEL;
         return $this->request_post($uri, compact('template_id'));
     }

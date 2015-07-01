@@ -27,7 +27,7 @@ class Order extends AbstractMerchant
     /**
      * 根据订单状态/创建时间获取订单详情
      */
-    public function getByFilter($status=null, $begin_time=null, $end_time=null)
+    public function getByFilter($status = null, $begin_time = null, $end_time = null)
     {
         $uri = $this->merchant_uri_prefix . WechatConfig::MERCHANT_ORDER_GET_BY_FILTER;
         is_null($status) ? '' : $params['status'] = $status;
