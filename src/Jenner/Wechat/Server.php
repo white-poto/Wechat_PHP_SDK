@@ -10,6 +10,7 @@ namespace Jenner\Wechat;
 
 use Jenner\Wechat\Exception\WechatException;
 use Jenner\Wechat\Request\XmlRequest;
+use Jenner\Wechat\Response\AbstractXml;
 use Jenner\Wechat\Response\XmlResponse;
 
 
@@ -63,6 +64,28 @@ use Jenner\Wechat\Response\XmlResponse;
  */
 class WechatServer
 {
+
+    const UNKNOWN_EVENT = 'unknown_event'; //未知事件推送
+    const UNKNOWN_MESSAGE = 'unknown_message'; //未知消息推送
+
+    const SUBSCRIBE = 'subscribe'; //关注事件
+    const UNSUBSCRIBE = 'unsubscribe'; //取消关注事件
+    const SCAN = 'SCAN'; //扫描带参数二维码事件
+    const LOCATION = 'LOCATION'; //上报地理位置事件
+    const CLICK = 'CLICK'; //点击菜单拉取消息时的事件推送
+    const VIEW = 'VIEW'; //点击菜单跳转链接时的事件推送
+    const SCANCODE_PUSH = 'scancode_push'; //扫码推事件的事件推送
+    const SCANCODE_WAITMSG = 'scancode_waitmsg'; //扫码推事件且弹出“消息接收中”提示框的事件推送
+    const PIC_SYSPHOTO = 'pic_sysphoto'; //弹出系统拍照发图的事件推送
+    const PIC_PHOTO_OR_ALBUM = 'pic_photo_or_album'; //弹出拍照或者相册发图的事件推送
+    const PIC_WEIXIN = 'pic_weixin'; //弹出微信相册发图器的事件推送
+    const LOCATION_SELECT = 'location_select'; //弹出地理位置选择器的事件推送
+    const MERCHANT_ORDER = 'merchant_order'; //订单付款时间
+    const CARD_PASS_CHECK = 'card_pass_check'; //生成的卡券通过审核
+    const CARD_NOT_PASS_CHECK = 'card_not_pass_check'; //卡券未通过审核
+    const USER_GET_CARD = 'user_get_card'; //用户领取卡券
+    const USER_DEL_CARD = 'user_del_card'; //用户删除卡券
+
     /**
      * 微信账号的token，验证消息真实性时需要用到
      */
@@ -187,9 +210,9 @@ class WechatServer
 
     /**
      * 向服务器发送消息
-     * @param XmlResponse $response
+     * @param AbstractXml $response
      */
-    public function send(XmlResponse $response)
+    public function send(AbstractXml $response)
     {
         $message = $response->create();
         echo $message;
@@ -204,14 +227,14 @@ class WechatServer
      */
     public function getRequest($param = FALSE)
     {
-        if ($param === FALSE) {
+        if ($param === false) {
             return $this->request;
         }
         $param = strtolower($param);
         if (isset($this->request[$param])) {
             return $this->request[$param];
         }
-        return NULL;
+        return null;
     }
 
     /**
@@ -277,7 +300,7 @@ class WechatServer
     public function validateSignature($token)
     {
         if (!(isset($_GET['signature']) && isset($_GET['timestamp']) && isset($_GET['nonce']))) {
-            return FALSE;
+            return false;
         }
 
         $signature = $_GET['signature'];

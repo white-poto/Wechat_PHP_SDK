@@ -18,14 +18,15 @@ use Jenner\Wechat\Config\URI;
  */
 class CustomService extends Client
 {
+    const API_SERVICE_LIST          = 'https://api.weixin.qq.com/cgi-bin/customservice/getkflist';
+    const API_SERVICE_ONLINE_LIST   = 'https://api.weixin.qq.com/cgi-bin/customservice/getonlinekflist';
     /**
      * 获取客服基本信息
      * @return bool|mixed
      */
     public function get()
     {
-        $uri = $this->uri_prefix . URI::CUSTOM_SERVICE_LIST;
-        return $this->request_get($uri);
+        return $this->request_get(self::API_SERVICE_LIST);
     }
 
     /**
@@ -34,8 +35,7 @@ class CustomService extends Client
      */
     public function getOnline()
     {
-        $uri = $this->uri_prefix . URI::CUSTOM_SERVICE_ONLINE_LIST;
-        return $this->request_get($uri);
+        return $this->request_get(self::API_SERVICE_ONLINE_LIST);
     }
 
     /**

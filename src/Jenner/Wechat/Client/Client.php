@@ -8,7 +8,6 @@
 
 namespace Jenner\Wechat\Client;
 
-use Jenner\Wechat\Exception\WechatException;
 use Jenner\Wechat\Exception\ResponseErrorException;
 use Jenner\Wechat\Config\URI;
 
@@ -30,12 +29,6 @@ use Jenner\Wechat\Config\URI;
  */
 class Client
 {
-
-    /**
-     * @var string
-     */
-    protected $uri_prefix;
-
     /**
      * 获取access_token回调函数
      * @var
@@ -48,21 +41,17 @@ class Client
      */
     protected static $set_access_token_callback;
 
+    protected $app_id;
+
+    protected $secret;
+
     /**
      * 初始化微信API_URL前缀
      */
-    public function __construct()
+    public function __construct($app_id, $secret)
     {
-        //检查WECHAT_APP_ID是否定义
-        if (!defined('WECHAT_APP_ID')) {
-            throw new WechatException('const WECHAT_APP_ID not defined');
-        }
-        //检查WECHAT_SECRET常量是否定义
-        if (!defined('WECHAT_SECRET')) {
-            throw new WechatException('const WECHAT_SECRET not defined');
-        }
-
-        $this->uri_prefix = URI::COMMON_PREFIX;
+        $this->app_id = $app_id;
+        $this->secret = $secret;
     }
 
     /**
@@ -141,8 +130,8 @@ class Client
         $uri = $this->uri_prefix . URI::AUTH_TOKEN;
         $params = [
             'grant_type' => 'client_credential',
-            'appid' => WECHAT_APP_ID,
-            'secret' => WECHAT_SECRET,
+            'appid' => $this->app_id,
+            'secret' => $this->secret,
         ];
         $http = new \Jenner\Wechat\Tool\Http($uri);
         $response_json = $http->GET($params);
@@ -165,7 +154,9 @@ class Client
      */
     public function getAccessTokenAndCheckExpiresIn()
     {
-        if (empty(self::$get_access_token_callback) || !is_callable(self::$get_access_token_callback)) return false;
+        if (empty(self::$get_access_token_callback) || !is_callable(self::$get_access_token_callback))
+            return false;
+
         $cache = call_user_func(self::$get_access_token_callback);
 
         if (empty($cache)) return false;
