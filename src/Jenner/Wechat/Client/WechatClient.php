@@ -31,13 +31,21 @@ use Jenner\Wechat\Config\URI;
 class WechatClient
 {
 
-    //微信API的URI前缀
+    /**
+     * @var string
+     */
     protected $uri_prefix;
 
-    //自定义获取access_token函数
+    /**
+     * 获取access_token回调函数
+     * @var
+     */
     protected static $get_access_token_callback;
 
-    //自定义保存access_token函数
+    /**
+     * 设置access_token缓存
+     * @var
+     */
     protected static $set_access_token_callback;
 
     /**
