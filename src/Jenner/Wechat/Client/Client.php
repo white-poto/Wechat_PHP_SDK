@@ -29,6 +29,9 @@ use Jenner\Wechat\Config\URI;
  */
 class Client
 {
+
+    const API_AUTH_TOKEN = 'https://api.weixin.qq.com/cgi-bin/token';
+
     /**
      * 获取access_token回调函数
      * @var
@@ -127,13 +130,12 @@ class Client
             return $cache['access_token'];
         }
 
-        $uri = $this->uri_prefix . URI::AUTH_TOKEN;
         $params = [
             'grant_type' => 'client_credential',
             'appid' => $this->app_id,
             'secret' => $this->secret,
         ];
-        $http = new \Jenner\Wechat\Tool\Http($uri);
+        $http = new \Jenner\Wechat\Tool\Http(self::API_AUTH_TOKEN);
         $response_json = $http->GET($params);
         $this->checkResponse($response_json);
         $result = json_decode($response_json, true);

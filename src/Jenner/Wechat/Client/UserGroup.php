@@ -17,6 +17,11 @@ use Jenner\Wechat\Config\URI;
  */
 class UserGroup extends Client
 {
+    const API_CREATE        = 'https://api.weixin.qq.com/cgi-bin/groups/create';
+    const API_GET           = 'https://api.weixin.qq.com/cgi-bin/groups/get';
+    const API_GET_ID        = 'https://api.weixin.qq.com/cgi-bin/groups/getid';
+    const API_UPDATE        = 'https://api.weixin.qq.com/cgi-bin/groups/update';
+    const API_MEMBER_UPDATE = 'https://api.weixin.qq.com/cgi-bin/groups/members/update';
     /**
      * 创建分组
      * @param $group
@@ -24,8 +29,7 @@ class UserGroup extends Client
      */
     public function create($group)
     {
-        $uri = $this->uri_prefix . URI::USER_GROUP_CREATE;
-        return $this->request_post($uri, $group);
+        return $this->request_post(self::API_CREATE, $group);
     }
 
     /**
@@ -34,8 +38,7 @@ class UserGroup extends Client
      */
     public function get()
     {
-        $uri = $this->uri_prefix . URI::USER_GROUP_GET;
-        return $this->request_get($uri);
+        return $this->request_get(self::API_GET);
     }
 
     /**
@@ -45,8 +48,7 @@ class UserGroup extends Client
      */
     public function getByOpenId($open_id)
     {
-        $uri = $this->uri_prefix . URI::USER_GROUP_GET_BY_OPEN_ID;
-        return $this->request_post($uri, ['openid' => $open_id]);
+        return $this->request_post(self::API_GET_ID, ['openid' => $open_id]);
     }
 
     /**
@@ -57,9 +59,8 @@ class UserGroup extends Client
      */
     public function update($group_id, $name)
     {
-        $uri = $this->uri_prefix . URI::USER_GROUP_UPDATE;
         $params = ['group' => ['id' => $group_id, 'name' => $name]];
-        return $this->request_post($uri, $params);
+        return $this->request_post(self::API_UPDATE, $params);
     }
 
     /**
@@ -70,8 +71,7 @@ class UserGroup extends Client
      */
     public function userGroupUpdate($open_id, $to_group_id)
     {
-        $uri = $this->uri_prefix . URI::USER_GROUP_MEMBER_UPDATE;
         $params = ['openid' => $open_id, 'to_group_id' => $to_group_id];
-        return $this->request_post($uri, $params);
+        return $this->request_post(self::API_MEMBER_UPDATE, $params);
     }
 } 

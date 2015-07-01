@@ -8,8 +8,6 @@
 
 namespace Jenner\Wechat\Client;
 
-use Jenner\Wechat\Config\URI;
-
 class User extends Client
 {
 
