@@ -9,8 +9,8 @@
 namespace Jenner\Wechat\Tool;
 
 
-
-class Http {
+class Http
+{
     private $url;
     //代理IP
     private $proxyIp;
@@ -22,6 +22,7 @@ class Http {
     private $connectTimeout;
     //HTTP响应状态码
     private $httpStatus;
+
     /**
      * @param $url
      * @param string $proxyIp
@@ -31,7 +32,8 @@ class Http {
      * @throws \Exception
      * @internal param int $transferTimeOut
      */
-    public function __construct($url, $proxyIp = '', $proxyPort = 0, $connectTimeout = 10, $timeOut = 300) {
+    public function __construct($url, $proxyIp = '', $proxyPort = 0, $connectTimeout = 10, $timeOut = 300)
+    {
         //URL地址
         if (!$url) throw new \Exception("必须指定URL地址！");
         $this->url = $url;
@@ -43,23 +45,27 @@ class Http {
             $this->proxyPort = $proxyPort ? $proxyPort : 80;
         }
     }
+
     /**
      * 设置代理服务器
      * @param $ip
      * @param int $port
      */
-    public function setProxy($ip, $port = 80) {
+    public function setProxy($ip, $port = 80)
+    {
         if ($ip) {
             $this->proxyIp = $ip;
             $this->proxyPort = $port;
         }
     }
+
     /**
      * GET请求
      * @param null $params
      * @return mixed
      */
-    public function GET($params = null) {
+    public function GET($params = null)
+    {
         //组合带参数的URL
         $url = &$this->url;
         if ($params && is_array($params)) {
@@ -79,6 +85,7 @@ class Http {
         curl_close($curl);
         return $content;
     }
+
     /**
      * POST请求，支持文件上传
      * 文件上传的params格式['key'=>'@file_path/filename']
@@ -86,7 +93,8 @@ class Http {
      * @param bool $fileUpload
      * @return mixed
      */
-    public function POST($params = null, $fileUpload = false) {
+    public function POST($params = null, $fileUpload = false)
+    {
         //初始化curl
         $curl = curl_init();
         $this->initProxy($curl);
@@ -105,7 +113,7 @@ class Http {
                 }
                 curl_setopt($curl, CURLOPT_POSTFIELDS, $postFields);
             }
-        }elseif($params){
+        } elseif ($params) {
             curl_setopt($curl, CURLOPT_POSTFIELDS, $params);
         }
         $content = curl_exec($curl);
@@ -113,13 +121,16 @@ class Http {
         curl_close($curl);
         return $content;
     }
+
     /**
      * 获取HTTP状态码
      * @return mixed
      */
-    public function getStatus(){
+    public function getStatus()
+    {
         return $this->httpStatus;
     }
+
     /**
      * 初始化代理
      * @param $curl
@@ -131,6 +142,7 @@ class Http {
             curl_setopt($curl, CURLOPT_PROXY, $proxy);
         }
     }
+
     /**
      * 初始化CURL参数
      * @param $curl

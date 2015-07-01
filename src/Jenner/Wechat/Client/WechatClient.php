@@ -110,7 +110,7 @@ class WechatClient
         $get_params['access_token'] = $access_token;
         $query_string = http_build_query($get_params);
         $post_params = json_encode($post_params, JSON_UNESCAPED_UNICODE);
-        $http = new \Jenner\Wechat\Http($uri . '?' . $query_string);
+        $http = new \Jenner\Wechat\Tool\Http($uri . '?' . $query_string);
         $result_json = $http->POST($post_params, $file_upload);
 
         //存在errcode并且errcode不为0时，为错误返回
@@ -136,7 +136,7 @@ class WechatClient
             'appid' => WECHAT_APP_ID,
             'secret' => WECHAT_SECRET,
         ];
-        $http = new \Jenner\Wechat\Http($uri);
+        $http = new \Jenner\Wechat\Tool\Http($uri);
         $response_json = $http->GET($params);
         $this->checkResponse($response_json);
         $result = json_decode($response_json, true);
