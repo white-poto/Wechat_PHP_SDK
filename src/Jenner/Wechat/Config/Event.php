@@ -39,5 +39,18 @@ class Event {
 
     const SUBSCRIBE = 'subscribe';
     const UNSUBSCRIBE = 'unsubscribe';
-    const SCAN = 'scan';
+    const SCAN = 'SCAN';
+    const LOCATION = 'LOCATION';
+    const CLICK = 'CLICK';
+    const VIEW = 'VIEW';
+    const SCANCODE_PUSH = 'scancode_push';
+    const PIC_SYSPHOTO = 'pic_sysphoto';
+    const PIC_PHOTO_OR_ALBUM = 'pic_photo_or_album';
+    const PIC_WEIXIN = 'pic_weixin';
+    const LOCATION_SELECT = 'location_select';
+    const MERCHANT_ORDER = 'merchant_order';
+    const CARD_PASS_CHECK = 'card_pass_check';
+    const CARD_NOT_PASS_CHECK = 'card_not_pass_check';
+    const USER_GET_CARD = 'user_get_card';
+    const USER_DEL_CARD = 'user_del_card';
 }
