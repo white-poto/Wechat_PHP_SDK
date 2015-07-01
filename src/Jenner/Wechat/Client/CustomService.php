@@ -16,7 +16,7 @@ use Jenner\Wechat\Config\URI;
  * Class CustomService
  * @package Jenner\Wechat\Client
  */
-class CustomService extends WechatClient
+class CustomService extends Client
 {
     /**
      * 获取客服基本信息

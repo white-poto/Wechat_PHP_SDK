@@ -9,10 +9,10 @@
 namespace Jenner\Wechat\Client\Card;
 
 
-use Jenner\Wechat\Client\WechatClient;
+use Jenner\Wechat\Client\Client;
 use Jenner\Wechat\Config\URI;
 
-abstract class AbstractCard extends WechatClient
+abstract class AbstractCard extends Client
 {
     public function __construct()
     {

@@ -15,7 +15,7 @@ use Jenner\Wechat\Config\URI;
  * Class UserGroup
  * @package Jenner\Wechat\Client
  */
-class UserGroup extends WechatClient
+class UserGroup extends Client
 {
     /**
      * 创建分组

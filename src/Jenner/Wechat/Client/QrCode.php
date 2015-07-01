@@ -8,12 +8,11 @@
 
 namespace Jenner\Wechat\Client;
 
-
-use Jenner\Tools\Http;
 use Jenner\Wechat\Exception\WechatException;
 use Jenner\Wechat\Config\URI;
+use Jenner\Wechat\Tool\Http;
 
-class QrCode extends WechatClient
+class QrCode extends Client
 {
 
     /**

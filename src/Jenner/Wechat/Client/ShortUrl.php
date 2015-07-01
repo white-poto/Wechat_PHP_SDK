@@ -10,7 +10,7 @@ namespace Jenner\Wechat\Client;
 
 use Jenner\Wechat\Config\URI;
 
-class ShortUrl extends WechatClient
+class ShortUrl extends Client
 {
     /**
      * 长连接转短连接

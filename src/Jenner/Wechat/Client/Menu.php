@@ -10,7 +10,7 @@ namespace Jenner\Wechat\Client;
 
 use Jenner\Wechat\Config\URI;
 
-class Menu extends WechatClient
+class Menu extends Client
 {
     /**
      * 获取微信菜单

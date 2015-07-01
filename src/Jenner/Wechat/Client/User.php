@@ -10,7 +10,7 @@ namespace Jenner\Wechat\Client;
 
 use Jenner\Wechat\Config\URI;
 
-class User extends WechatClient
+class User extends Client
 {
 
     /**

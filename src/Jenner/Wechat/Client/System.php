@@ -10,7 +10,7 @@ namespace Jenner\Wechat\Client;
 
 use Jenner\Wechat\Config\URI;
 
-class System extends WechatClient
+class System extends Client
 {
     public function getIpList()
     {

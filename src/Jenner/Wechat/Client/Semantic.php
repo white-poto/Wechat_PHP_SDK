@@ -6,12 +6,9 @@
  * Time: 上午11:43
  */
 
-namespace Jenner\Wechat\Client\Menu;
+namespace Jenner\Wechat\Client;
 
-
-use Jenner\Wechat\Client\WechatClient;
-
-class Semantic extends WechatClient
+class Semantic extends Client
 {
     public function search($uid, $category, $query, $protocol_param)
     {

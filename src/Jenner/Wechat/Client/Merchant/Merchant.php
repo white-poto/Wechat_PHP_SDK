@@ -9,10 +9,10 @@
 namespace Jenner\Wechat\Client\Merchant;
 
 
-use Jenner\Wechat\Client\WechatClient;
+use Jenner\Wechat\Client\Client;
 use Jenner\Wechat\Config\URI;
 
-class Merchant extends WechatClient
+class Merchant extends Client
 {
     public function __construct()
     {

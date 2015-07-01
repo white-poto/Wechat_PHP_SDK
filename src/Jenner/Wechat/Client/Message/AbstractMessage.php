@@ -10,7 +10,7 @@
 
 namespace Jenner\Wechat\Client\Message;
 
-use Jenner\Wechat\Client\WechatClient;
+use Jenner\Wechat\Client\Client;
 use Jenner\Wechat\Config\URI;
 
 
@@ -18,7 +18,7 @@ use Jenner\Wechat\Config\URI;
  * Class CustomMessage
  * @package vendor\wechat\client
  */
-abstract class AbstractMessage extends WechatClient
+abstract class AbstractMessage extends Client
 {
 
     /**

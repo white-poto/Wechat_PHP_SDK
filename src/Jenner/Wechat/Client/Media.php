@@ -12,7 +12,7 @@ namespace Jenner\Wechat\Client;
 use Jenner\Wechat\Exception\WechatException;
 use Jenner\Wechat\Config\URI;
 
-class Media extends WechatClient
+class Media extends Client
 {
     public function upload($type, $filename_with_full_path)
     {

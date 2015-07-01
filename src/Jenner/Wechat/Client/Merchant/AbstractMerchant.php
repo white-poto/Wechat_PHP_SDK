@@ -9,10 +9,10 @@
 namespace Jenner\Wechat\Client\Merchant;
 
 
-use Jenner\Wechat\Client\WechatClient;
+use Jenner\Wechat\Client\Client;
 use Jenner\Wechat\Config\URI;
 
-class AbstractMerchant extends WechatClient
+class AbstractMerchant extends Client
 {
     protected $merchant_uri_prefix;
 

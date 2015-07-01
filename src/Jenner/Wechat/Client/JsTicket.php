@@ -11,7 +11,7 @@ namespace Jenner\Wechat\Client;
 
 use Jenner\Wechat\Config\URI;
 
-class JsTicket extends WechatClient
+class JsTicket extends Client
 {
 
     public function getSignPackage($js_api_ticket = null)
