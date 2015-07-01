@@ -9,10 +9,10 @@
 namespace Jenner\Wechat\Client;
 
 
-use Jenner\Wechat\Config\URI;
-
 class JsTicket extends Client
 {
+
+    const API_GET = 'https://api.weixin.qq.com/cgi-bin/ticket/getticket';
 
     public function getSignPackage($js_api_ticket = null)
     {
@@ -29,7 +29,7 @@ class JsTicket extends Client
         $signature = sha1($string);
 
         $signPackage = array(
-            "appId" => WECHAT_APP_ID,
+            "appId" => $this->app_id,
             "nonceStr" => $nonce_str,
             "timestamp" => $timestamp,
             "url" => $url,
@@ -63,7 +63,6 @@ class JsTicket extends Client
     public function getTicket($type)
     {
         $params = ['type' => $type];
-        $uri = $this->uri_prefix . URI::TICKET_GET_TICKET;
-        return $this->request_get($uri, $params);
+        return $this->request_get(self::API_GET, $params);
     }
 } 

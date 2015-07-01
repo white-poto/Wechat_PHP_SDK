@@ -13,6 +13,10 @@ use Jenner\Wechat\Config\URI;
 class User extends Client
 {
 
+    const API_UPDATE_REMARK = 'https://api.weixin.qq.com/cgi-bin/user/info/updateremark';
+    const API_INFO          = 'https://api.weixin.qq.com/cgi-bin/user/info';
+    const API_GET           = 'https://api.weixin.qq.com/cgi-bin/user/get';
+
     /**
      * 更新用户备注
      * @param $openid
@@ -21,9 +25,8 @@ class User extends Client
      */
     public function updateRemark($openid, $remark)
     {
-        $uri = $this->uri_prefix . URI::USER_UPDATE_REMARK;
         $params = ['openid' => $openid, 'remark' => $remark];
-        $result = $this->request_get($uri, $params);
+        $result = $this->request_get(self::API_UPDATE_REMARK, $params);
 
         return $result;
     }
@@ -36,9 +39,8 @@ class User extends Client
      */
     public function info($openid, $lang = 'zh_CN')
     {
-        $uri = $this->uri_prefix . URI::USER_INFO;
         $params = ['openid' => $openid, 'lang' => $lang];
-        $response = $this->request_get($uri, $params);
+        $response = $this->request_get(self::API_INFO, $params);
 
         return $response;
     }
@@ -49,13 +51,12 @@ class User extends Client
      */
     public function getAll()
     {
-        $uri = $this->uri_prefix . URI::USER_GET;
         $data = $openid_list = [];
         while (true) {
             if ($data) {
-                $data = $this->request_get($uri, ['next_openid' => $data['next_openid']]);
+                $data = $this->request_get(self::API_GET, ['next_openid' => $data['next_openid']]);
             } else {
-                $data = $this->request_get($uri);
+                $data = $this->request_get(self::API_GET);
             }
             $openid_list = array_merge($openid_list, $data['data']['openid']);
             if (empty($data['next_openid'])) {

@@ -12,6 +12,8 @@ use Jenner\Wechat\Config\URI;
 
 class ShortUrl extends Client
 {
+    const API_URL = 'https://api.weixin.qq.com/cgi-bin/shorturl';
+
     /**
      * 长连接转短连接
      * @param $long_url
@@ -19,11 +21,10 @@ class ShortUrl extends Client
      */
     public function get($long_url)
     {
-        $uri = $this->uri_prefix . URI::SHORT_URL;
         $param = [
             'action' => 'long2short',
             'long_url' => $long_url,
         ];
-        return $this->request_post($uri, $param);
+        return $this->request_post(self::API_URL, $param);
     }
 } 

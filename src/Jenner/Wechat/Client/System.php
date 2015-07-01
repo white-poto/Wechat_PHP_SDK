@@ -12,10 +12,12 @@ use Jenner\Wechat\Config\URI;
 
 class System extends Client
 {
+
+    const API_CALLBACK_IP = 'https://api.weixin.qq.com/cgi-bin/getcallbackip';
+
     public function getIpList()
     {
-        $uri = $this->uri_prefix . URI::AUTH_GET_CALLBACK_IP;
-        $result = $this->request_get($uri);
+        $result = $this->request_get(self::API_CALLBACK_IP);
 
         return $result;
     }

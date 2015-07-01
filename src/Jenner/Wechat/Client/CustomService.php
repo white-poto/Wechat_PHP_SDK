@@ -18,15 +18,21 @@ use Jenner\Wechat\Config\URI;
  */
 class CustomService extends Client
 {
-    const API_SERVICE_LIST          = 'https://api.weixin.qq.com/cgi-bin/customservice/getkflist';
-    const API_SERVICE_ONLINE_LIST   = 'https://api.weixin.qq.com/cgi-bin/customservice/getonlinekflist';
+    const API_LIST              = 'https://api.weixin.qq.com/cgi-bin/customservice/getkflist';
+    const API_ONLINE_LIST       = 'https://api.weixin.qq.com/cgi-bin/customservice/getonlinekflist';
+    const API_ADD               = 'https://api.weixin.qq.com/cgi-bin/customservice/kfaccount/add';
+    const API_UPDATE            = 'https://api.weixin.qq.com/cgi-bin/customservice/kfaccount/update';
+    const API_DELETE            = 'https://api.weixin.qq.com/cgi-bin/customservice/kfaccount/del';
+    const API_UPLOAD_HEAD_IMG   = 'https://api.weixin.qq.com/cgi-bin/customservice/kfacount/uploadheadimg';
+    const API_RECORD            = 'https://api.weixin.qq.com/cgi-bin/customservice/getrecord';
+    
     /**
      * 获取客服基本信息
      * @return bool|mixed
      */
     public function get()
     {
-        return $this->request_get(self::API_SERVICE_LIST);
+        return $this->request_get(self::API_LIST);
     }
 
     /**
@@ -35,7 +41,7 @@ class CustomService extends Client
      */
     public function getOnline()
     {
-        return $this->request_get(self::API_SERVICE_ONLINE_LIST);
+        return $this->request_get(self::API_ONLINE_LIST);
     }
 
     /**
@@ -47,9 +53,8 @@ class CustomService extends Client
      */
     public function add($account, $nickname, $password)
     {
-        $uri = $this->uri_prefix . URI::CUSTOM_SERVICE_ADD;
         $params = ['account' => $account, 'nickname' => $nickname, 'password' => $password];
-        return $this->request_post($uri, $params);
+        return $this->request_post(self::API_ADD, $params);
     }
 
     /**
@@ -61,23 +66,21 @@ class CustomService extends Client
      */
     public function update($account, $nickname, $password)
     {
-        $uri = $this->uri_prefix . URI::CUSTOM_SERVICE_UPDATE;
         $params = ['account' => $account, 'nickname' => $nickname, 'password' => $password];
-        return $this->request_post($uri, $params);
+        return $this->request_post(self::API_UPDATE, $params);
     }
 
     /**
      * 上传客服头像
      * @param $account
-     * @param $img_with_full_path 图片地址，绝对路径
+     * @param string $img_with_full_path 图片地址，绝对路径
      * @return bool|mixed
      */
     public function uploadHeadImg($account, $img_with_full_path)
     {
-        $uri = $this->uri_prefix . URI::CUSTOM_SERVICE_UPLOAD_HEAD_IMG;
         $get_params = ['kf_account' => $account];
         $post_params = ['media' => '@' . $img_with_full_path];
-        return $this->request($uri, $post_params, $get_params, true);
+        return $this->request(self::API_UPLOAD_HEAD_IMG, $post_params, $get_params, true);
     }
 
     /**
@@ -87,9 +90,8 @@ class CustomService extends Client
      */
     public function delete($account)
     {
-        $uri = $this->uri_prefix . URI::CUSTOM_SERVICE_DELETE;
         $params = ['kf_account' => $account];
-        return $this->request_get($uri, $params);
+        return $this->request_get(self::API_DELETE, $params);
     }
 
     /**
@@ -114,7 +116,6 @@ class CustomService extends Client
             throw new WechatException('param start_time and end_time cannot span multiple days');
         }
 
-        $uri = $this->uri_prefix . URI::CUSTOM_SERVICE_RECORD;
         $params = [
             'starttime' => $start_time,
             'endtime' => $end_time,
@@ -123,6 +124,6 @@ class CustomService extends Client
             'pageindex' => $page_index,
         ];
 
-        return $this->request_post($uri, $params);
+        return $this->request_post(self::API_RECORD, $params);
     }
 }

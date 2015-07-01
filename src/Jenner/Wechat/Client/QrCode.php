@@ -9,11 +9,13 @@
 namespace Jenner\Wechat\Client;
 
 use Jenner\Wechat\Exception\WechatException;
-use Jenner\Wechat\Config\URI;
 use Jenner\Wechat\Tool\Http;
 
 class QrCode extends Client
 {
+
+    const API_CREATE    = 'https://api.weixin.qq.com/cgi-bin/qrcode/create';
+    const API_DOWNLOAD  = 'https://api.weixin.qq.com/cgi-bin/showqrcode';
 
     /**
      * 创建永久二维码
@@ -23,13 +25,12 @@ class QrCode extends Client
      */
     public function create($expire_seconds, $scene_id)
     {
-        $uri = $this->uri_prefix . URI::QR_CODE_CREATE;
         $params = [
             'expire_seconds' => $expire_seconds,
             'action_name' => 'QR_LIMIT_SCENE',
             'scene' => ['scene_id' => $scene_id]
         ];
-        return $this->request_post($uri, $params);
+        return $this->request_post(self::API_CREATE, $params);
     }
 
     /**
@@ -40,13 +41,12 @@ class QrCode extends Client
      */
     public function createTemp($expire_seconds, $scene_id)
     {
-        $uri = $this->uri_prefix . URI::QR_CODE_CREATE;
         $params = [
             'expire_seconds' => $expire_seconds,
             'action_name' => 'QR_SCENE',
             'scene' => ['scene_id' => $scene_id]
         ];
-        return $this->request_post($uri, $params);
+        return $this->request_post(self::API_CREATE, $params);
     }
 
     /**
@@ -57,12 +57,12 @@ class QrCode extends Client
      */
     public function download($ticket)
     {
-        $uri = $this->uri_prefix . URI::QR_CODE_DOWNLOAD;
         $ticket = urlencode($ticket);
-        $http = new Http($uri);
+        $http = new Http(self::API_DOWNLOAD);
         $image = $http->GET(compact('ticket'));
         if ($http->getStatus() != 200) {
-            throw new WechatException('download qrcode image failed. the ticket param error');
+            $message = 'download qrcode image failed. the ticket param error';
+            throw new WechatException($message);
         }
 
         return $image;

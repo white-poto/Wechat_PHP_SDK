@@ -12,14 +12,18 @@ use Jenner\Wechat\Config\URI;
 
 class Menu extends Client
 {
+    
+    const API_GET      = 'https://api.weixin.qq.com/cgi-bin/menu/get';
+    const API_DELETE   = 'https://api.weixin.qq.com/cgi-bin/menu/delete';
+    const API_CREATE   = 'https://api.weixin.qq.com/cgi-bin/menu/create';
+    
     /**
      * 获取微信菜单
      * @return bool|mixed
      */
     public function get()
     {
-        $uri = $this->uri_prefix . URI::MENU_GET;
-        return $this->request_get($uri);
+        return $this->request_get(self::API_GET);
     }
 
     /**
@@ -28,8 +32,7 @@ class Menu extends Client
      */
     public function delete()
     {
-        $uri = $this->uri_prefix . URI::MENU_DELETE;
-        return $this->request_get($uri);
+        return $this->request_get(self::API_DELETE);
     }
 
     /**
@@ -45,7 +48,6 @@ class Menu extends Client
      */
     public function create($menu)
     {
-        $uri = $this->uri_prefix . URI::MENU_CREATE;
-        return $this->request_post($uri, $menu);
+        return $this->request_post(self::API_CREATE, $menu);
     }
 }
